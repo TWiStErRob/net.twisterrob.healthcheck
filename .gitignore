@@ -1,0 +1,6 @@
+/.gradle
+/.idea
+/build
+/*.iml
+/package-lock.json
+/local.properties

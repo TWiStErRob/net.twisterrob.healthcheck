@@ -1,0 +1,25 @@
+plugins {
+	id "org.jetbrains.kotlin.jvm" version "1.2.61"
+}
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	implementation "org.jetbrains.kotlin:kotlin-stdlib"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	implementation "org.jetbrains.kotlin:kotlin-reflect"
+	implementation "org.seleniumhq.selenium:selenium-java:3.14.0"
+	implementation "org.jetbrains.kotlin:kotlin-test"
+
+	testImplementation "org.jetbrains.kotlin:kotlin-test-junit"
+}
+
+compileKotlin {
+	kotlinOptions {
+		verbose = true
+		allWarningsAsErrors = true
+	}
+}
