@@ -6,18 +6,18 @@ import org.junit.Test
 class AboutPageTest : TestBase() {
 
 	@Test fun `about page can start up`() {
-		val about = AboutPage(driver)
+		val page = AboutPage(driver)
 
-		about.launch()
+		page.open()
 
-		about.assertLaunched()
+		page.assertOpened()
 	}
 
 	@Test fun `about page has image of me`() {
-		val about = AboutPage(driver)
+		val page = AboutPage(driver)
 
-		about.launch()
+		page.open()
 
-		about.assertImageVisible()
+		page.assertImageVisible()
 	}
 }

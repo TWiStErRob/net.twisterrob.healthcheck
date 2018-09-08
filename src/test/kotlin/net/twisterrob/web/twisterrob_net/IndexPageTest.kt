@@ -3,22 +3,22 @@ package net.twisterrob.web.twisterrob_net
 import net.twisterrob.web.test.TestBase
 import org.junit.Test
 
-class HomePageTest : TestBase() {
+class IndexPageTest : TestBase() {
 
 	@Test fun `home page can start up`() {
-		val home = HomePage(driver)
+		val page = IndexPage(driver)
 
-		home.launch()
+		page.open()
 
-		home.assertLaunched()
+		page.assertOpened()
 	}
 
 	@Test fun `home page can launch about`() {
-		val home = HomePage(driver)
-		home.launch()
+		val page = IndexPage(driver)
+		page.open()
 
-		val about = home.gotoAbout()
+		val about = page.gotoAbout()
 
-		about.assertLaunched()
+		about.assertOpened()
 	}
 }
