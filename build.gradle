@@ -29,8 +29,15 @@ compileKotlin {
 }
 
 tasks.withType(Test) {
-	useJUnitPlatform()
+	useJUnitPlatform { org.gradle.api.tasks.testing.junitplatform.JUnitPlatformOptions options ->
+	}
 	testLogging { org.gradle.api.tasks.testing.logging.TestLoggingContainer logging ->
 		logging.events("passed", "skipped", "failed")
+	}
+}
+
+task smokeTest(type: Test) { Test task ->
+	useJUnitPlatform { org.gradle.api.tasks.testing.junitplatform.JUnitPlatformOptions options ->
+		options.includeTags 'smoke'
 	}
 }
