@@ -21,8 +21,10 @@ object Browser {
 	val driver: WebDriver
 		get() {
 			val driver = ChromeDriver()
-			driver.manage()?.timeouts()?.implicitlyWait(10, TimeUnit.SECONDS)
-			driver.manage()?.window()?.maximize()
+			driver.manage().apply {
+				timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+				window().maximize()
+			}
 			return driver
 		}
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver
 abstract class TestBase {
 
 	protected lateinit var driver: WebDriver
+		private set
 
 	@BeforeEach
 	fun driverSetUp() {
