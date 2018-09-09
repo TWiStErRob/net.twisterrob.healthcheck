@@ -3,6 +3,8 @@ package net.twisterrob.web.twisterrob_net.regex
 import net.twisterrob.web.test.SmokeTest
 import net.twisterrob.web.test.TestBase
 import net.twisterrob.web.test.openTest
+import net.twisterrob.web.test.tags.interaction
+import net.twisterrob.web.test.tags.justOpen
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
 import org.junit.jupiter.api.Test
@@ -10,10 +12,10 @@ import org.junit.jupiter.api.TestFactory
 
 class RegexPageTest : TestBase() {
 
-	@Tags(Tag("just-open"))
+	@Tags(Tag(justOpen))
 	@TestFactory fun openTest() = openTest<RegexPage>(driver)
 
-	@Tags(Tag("just-open"))
+	@Tags(Tag(justOpen))
 	@Test fun `preset data is filled in`() {
 		val page = RegexPage(driver)
 
@@ -27,7 +29,7 @@ class RegexPageTest : TestBase() {
 	}
 
 	@SmokeTest
-	@Tags(Tag("interaction"))
+	@Tags(Tag(interaction))
 	@Test fun `test button executes`() {
 		val page = RegexPage(driver)
 		page.open()
@@ -41,7 +43,7 @@ class RegexPageTest : TestBase() {
 		page.assertDebug().isDisplayed()
 	}
 
-	@Tags(Tag("interaction"))
+	@Tags(Tag(interaction))
 	@Test fun `Java example changes form`() {
 		val page = RegexPage(driver)
 		page.open()
