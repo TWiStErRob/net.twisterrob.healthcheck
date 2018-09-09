@@ -1,9 +1,13 @@
 package net.twisterrob.web.twisterrob_net.regex
 
-import net.twisterrob.web.test.SimplePageTestBase
+import net.twisterrob.web.test.TestBase
+import net.twisterrob.web.test.openTest
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 
-class RegexPageTest : SimplePageTestBase(RegexPage::class) {
+class RegexPageTest : TestBase() {
+
+	@TestFactory fun openTest() = openTest<RegexPage>(driver)
 
 	@Test fun `preset data is filled in`() {
 		val page = RegexPage(driver)
