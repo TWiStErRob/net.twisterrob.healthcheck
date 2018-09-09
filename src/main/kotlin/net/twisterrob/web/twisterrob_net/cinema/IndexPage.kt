@@ -19,8 +19,7 @@ class IndexPage(driver: WebDriver) : BasePage(driver) {
 	}
 
 	override fun assertOpened() {
-		driver.get("http://cinema.twisterrob.net/")
-		assertThat(driver.title).isEqualTo("cinema.twisterrob.net")
+		assertThat(driver.currentUrl).isEqualTo("http://cinema.twisterrob.net/")
 		assertThat(heading.text).isEqualTo("Cineworld Server API")
 	}
 }
