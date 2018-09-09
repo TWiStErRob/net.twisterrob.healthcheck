@@ -8,7 +8,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import kotlin.test.assertEquals
 
 class RegexPage(driver: WebDriver) : BasePage(driver) {
 
@@ -41,9 +40,8 @@ class RegexPage(driver: WebDriver) : BasePage(driver) {
 
 	override fun assertOpened() {
 		assertThat(driver.currentUrl).startsWith("http://regex.twisterrob.net/")
-		assertEquals("Regular Expressions (Regex) Sandbox", driver.title)
-		assertEquals("Regular Expressions (Regex) Sandbox", header.text)
-		assertThat(search).text()
+		assertThat(driver.title).isEqualTo("Regular Expressions (Regex) Sandbox")
+		assertThat(header).text().isEqualTo("Regular Expressions (Regex) Sandbox")
 	}
 
 	fun test() = testButton.submit().also { driver.waitForJQuery() }

@@ -1,6 +1,6 @@
 package net.twisterrob.web.test
 
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import kotlin.reflect.KClass
 
 // TODO move to JUnit 5 and create @TestFactory for this

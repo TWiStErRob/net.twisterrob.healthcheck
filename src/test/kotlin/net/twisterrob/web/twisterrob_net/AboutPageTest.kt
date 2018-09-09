@@ -1,7 +1,7 @@
 package net.twisterrob.web.twisterrob_net
 
 import net.twisterrob.web.test.TestBase
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class AboutPageTest : TestBase() {
 

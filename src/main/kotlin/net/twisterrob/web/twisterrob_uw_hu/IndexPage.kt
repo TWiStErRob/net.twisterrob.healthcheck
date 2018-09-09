@@ -1,10 +1,10 @@
 package net.twisterrob.web.twisterrob_uw_hu
 
 import net.twisterrob.selenium.createPage
+import org.assertj.core.api.Assertions.assertThat
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import kotlin.test.assertEquals
 
 class IndexPage(driver: WebDriver) : BaseUltraWebPage(driver) {
 
@@ -16,8 +16,8 @@ class IndexPage(driver: WebDriver) : BaseUltraWebPage(driver) {
 	}
 
 	override fun assertOpened() {
-		assertEquals("Papp Róbert (TWiStErRob) személyes oldal", driver.title)
-		assertEquals("Saját oldal (Sok hasznos dologgal:)", myPageLink.text)
+		assertThat(driver.title).isEqualTo("Papp Róbert (TWiStErRob) személyes oldal")
+		assertThat(myPageLink.text).isEqualTo("Saját oldal (Sok hasznos dologgal:)")
 	}
 
 	fun gotoMyPage(): MyPagePage {

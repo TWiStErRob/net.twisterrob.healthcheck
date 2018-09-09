@@ -1,5 +1,6 @@
 package net.twisterrob.web.twisterrob_net.cinema
 
+import net.twisterrob.selenium.assertThat
 import net.twisterrob.selenium.initElements
 import net.twisterrob.web.test.BasePage
 import org.assertj.core.api.Assertions.assertThat
@@ -9,7 +10,6 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import java.time.LocalDate
-import kotlin.test.assertEquals
 
 class PlannerPage(driver: WebDriver) : BasePage(driver) {
 
@@ -35,14 +35,14 @@ class PlannerPage(driver: WebDriver) : BasePage(driver) {
 
 	override fun assertOpened() {
 		assertThat(driver.currentUrl).startsWith("http://cinema.twisterrob.net/planner/")
-		assertEquals("Cineworld Cinemas Planner - Developer Beta", driver.title)
+		assertThat(driver.title).isEqualTo("Cineworld Cinemas Planner - Developer Beta")
 
 		// static content
 		assertThat(dateLabel.text).startsWith("Selected date is: ")
 
 		// dynamic content
 		assertThat(driver.currentUrl).contains("d=${LocalDate.now().year}")
-		assertEquals("Please select a film...", performancesEmpty.text)
+		assertThat(performancesEmpty).text().isEqualTo("Please select a film...")
 	}
 
 	fun assertHasSomeCinemas() {

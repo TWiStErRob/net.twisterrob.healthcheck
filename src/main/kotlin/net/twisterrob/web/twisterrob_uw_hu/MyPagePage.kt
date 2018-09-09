@@ -1,9 +1,9 @@
 package net.twisterrob.web.twisterrob_uw_hu
 
+import org.assertj.core.api.Assertions.assertThat
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import kotlin.test.assertEquals
 
 class MyPagePage(driver: WebDriver) : BaseUltraWebPage(driver, framed = false) {
 
@@ -15,8 +15,8 @@ class MyPagePage(driver: WebDriver) : BaseUltraWebPage(driver, framed = false) {
 	}
 
 	override fun assertOpened() {
-		assertEquals("http://twisterrob.uw.hu/mypage/index.php", driver.currentUrl)
-		assertEquals("Papp Róbert - Személyes HonLapja", driver.title)
-		assertEquals("Frissítések:", header.text)
+		assertThat(driver.currentUrl).isEqualTo("http://twisterrob.uw.hu/mypage/index.php")
+		assertThat(driver.title).isEqualTo("Papp Róbert - Személyes HonLapja")
+		assertThat(header.text).isEqualTo("Frissítések:")
 	}
 }

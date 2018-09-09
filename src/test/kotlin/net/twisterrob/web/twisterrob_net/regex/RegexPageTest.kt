@@ -1,7 +1,7 @@
 package net.twisterrob.web.twisterrob_net.regex
 
 import net.twisterrob.web.test.SimplePageTestBase
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class RegexPageTest : SimplePageTestBase(RegexPage::class) {
 

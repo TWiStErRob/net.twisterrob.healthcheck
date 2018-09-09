@@ -2,11 +2,10 @@ package net.twisterrob.web.twisterrob_net
 
 import net.twisterrob.selenium.initElements
 import net.twisterrob.web.test.BasePage
+import org.assertj.core.api.Assertions.assertThat
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
 
 class AboutPage(driver: WebDriver) : BasePage(driver) {
 
@@ -24,12 +23,12 @@ class AboutPage(driver: WebDriver) : BasePage(driver) {
 	}
 
 	override fun assertOpened() {
-		assertEquals("http://www.twisterrob.net/info/", driver.currentUrl)
-		assertEquals("About", driver.title)
-		assertEquals("About", heading.text)
+		assertThat(driver.currentUrl).isEqualTo("http://www.twisterrob.net/info/")
+		assertThat(driver.title).isEqualTo("About")
+		assertThat(heading.text).isEqualTo("About")
 	}
 
 	fun assertImageVisible() {
-		assertTrue(images.any { it.isDisplayed })
+		assertThat(images).anyMatch { it.isDisplayed }
 	}
 }

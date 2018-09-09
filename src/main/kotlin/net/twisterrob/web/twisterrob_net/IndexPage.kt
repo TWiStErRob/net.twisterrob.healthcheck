@@ -3,10 +3,10 @@ package net.twisterrob.web.twisterrob_net
 import net.twisterrob.selenium.createPage
 import net.twisterrob.selenium.initElements
 import net.twisterrob.web.test.BasePage
+import org.assertj.core.api.Assertions.assertThat
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
-import kotlin.test.assertEquals
 
 class IndexPage(driver: WebDriver) : BasePage(driver) {
 
@@ -23,10 +23,10 @@ class IndexPage(driver: WebDriver) : BasePage(driver) {
 	}
 
 	override fun assertOpened() {
-		assertEquals("http://www.twisterrob.net/", driver.currentUrl)
+		assertThat(driver.currentUrl).isEqualTo("http://www.twisterrob.net/")
 		// TODO dashes?
-		assertEquals("TWiStErRob – Professional & Hobby Development site", driver.title)
-		assertEquals("TWiStErRob — Professional & Hobby Development site", logo.getAttribute("title"))
+		assertThat(driver.title).isEqualTo("TWiStErRob – Professional & Hobby Development site")
+		assertThat(logo.getAttribute("title")).isEqualTo("TWiStErRob — Professional & Hobby Development site")
 	}
 
 	fun gotoAbout(): AboutPage {
