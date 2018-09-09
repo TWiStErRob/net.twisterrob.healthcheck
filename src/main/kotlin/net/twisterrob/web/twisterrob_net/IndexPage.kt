@@ -23,6 +23,7 @@ class IndexPage(driver: WebDriver) : BasePage(driver) {
 	}
 
 	override fun assertOpened() {
+		assertEquals("http://www.twisterrob.net/", driver.currentUrl)
 		// TODO dashes?
 		assertEquals("TWiStErRob – Professional & Hobby Development site", driver.title)
 		assertEquals("TWiStErRob — Professional & Hobby Development site", logo.getAttribute("title"))

@@ -15,6 +15,7 @@ class MyPagePage(driver: WebDriver) : BaseUltraWebPage(driver, framed = false) {
 	}
 
 	override fun assertOpened() {
+		assertEquals("http://twisterrob.uw.hu/mypage/index.php", driver.currentUrl)
 		assertEquals("Papp Róbert - Személyes HonLapja", driver.title)
 		assertEquals("Frissítések:", header.text)
 	}
