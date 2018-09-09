@@ -33,4 +33,17 @@ class RegexPageTest : TestBase() {
 		page.assertOutput().text().isNotBlank()
 		page.assertDebug().isDisplayed()
 	}
+
+	@Test fun `Java example changes form`() {
+		val page = RegexPage(driver)
+		page.open()
+
+		page.showExampleJava()
+
+		page.assertSearch().text().contains("public")
+		page.assertReplace().text().contains("return")
+		page.assertInput().text().contains("boolean add(T t);")
+		page.assertOutput().text().contains("add[T t]: boolean;")
+		page.assertDebug().isDisplayed()
+	}
 }

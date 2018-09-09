@@ -44,12 +44,14 @@ class RegexPage(driver: WebDriver) : BasePage(driver) {
 		assertThat(header).text().isEqualTo("Regular Expressions (Regex) Sandbox")
 	}
 
-	fun test() = testButton.submit().also { driver.waitForJQuery() }
+	fun test() = testButton.submit().wait()
+	fun showExampleJava() = exampleJava.click().wait()
 
 	fun assertSearch() = assertThat(search)
 	fun assertReplace() = assertThat(replace)
 	fun assertInput() = assertThat(input)
 	fun assertOutput() = assertThat(output)
 	fun assertDebug() = assertThat(debug)
-}
 
+	private fun <T> T.wait(): T = also { driver.waitForJQuery() }
+}
