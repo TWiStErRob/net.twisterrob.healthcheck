@@ -1,8 +1,6 @@
-import org.gradle.internal.os.OperatingSystem;
-
 if (!file("node_modules").exists()) {
 	exec {
-		if (OperatingSystem.current().isWindows()) {
+		if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
 			commandLine "cmd", "/c", "npm", "install"
 		} else {
 			commandLine "npm", "install"
