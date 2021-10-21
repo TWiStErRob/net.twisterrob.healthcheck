@@ -21,9 +21,18 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-console:1.8.1")
 }
 
+val javaVersion = JavaVersion.VERSION_1_8
+
+plugins.withId("java") {
+	val java = convention.getPluginByName<JavaPluginConvention>("java")
+	java.sourceCompatibility = javaVersion
+	java.targetCompatibility = javaVersion
+}
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 	kotlinOptions {
 		verbose = true
+		jvmTarget = javaVersion.toString()
 		allWarningsAsErrors = true
 	}
 }
