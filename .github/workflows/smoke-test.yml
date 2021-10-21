@@ -19,7 +19,7 @@ jobs:
 
       - name: Check Dependencies
         run: |
-          gradlew --version
+          ./gradlew --version
           node -v
           npm -v
           npm install
