@@ -5,6 +5,7 @@ import net.twisterrob.web.test.SmokeTest
 import net.twisterrob.web.test.TestBase
 import net.twisterrob.web.test.tags.justOpen
 import net.twisterrob.web.test.tags.navigation
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
 import org.junit.jupiter.api.Test
@@ -31,6 +32,7 @@ class IndexPageTest : TestBase() {
 		about.assertOpened()
 	}
 
+	@Disabled(".htaccess is not deployed")
 	@SmokeTest
 	@Tags(Tag(navigation))
 	@Test fun `redirects from naked domain`() {
