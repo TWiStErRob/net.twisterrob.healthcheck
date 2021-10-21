@@ -1,6 +1,9 @@
 name: Tests
 on:
-  push
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 */3 * * *'
 concurrency:
   # Documentation suggests ${{ github.head_ref }}, but that's only available on pull_request/pull_request_target triggers, so using ${{ github.ref }}.
   # On master, we want all builds to complete even if merging happens faster to make it easier to discover at which point something broke.
