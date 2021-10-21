@@ -3,7 +3,7 @@ package net.twisterrob.web.test
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import java.io.File
-import java.util.concurrent.TimeUnit
+import java.time.Duration
 
 object Browser {
 
@@ -22,7 +22,7 @@ object Browser {
 		get() {
 			val driver = ChromeDriver()
 			driver.manage().apply {
-				timeouts().implicitlyWait(10, TimeUnit.SECONDS)
+				timeouts().implicitlyWait(Duration.ofSeconds(10))
 				window().maximize()
 			}
 			return driver
