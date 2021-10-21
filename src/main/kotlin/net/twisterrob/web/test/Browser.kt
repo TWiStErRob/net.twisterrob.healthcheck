@@ -11,7 +11,7 @@ object Browser {
 		System.setProperty(
 			"webdriver.chrome.driver",
 			File("node_modules/webdriver-manager/selenium")
-				.listFiles { _, fileName: String -> fileName.startsWith("chromedriver_") }
+				.listFiles { _, fileName: String -> fileName.startsWith("chromedriver_") }!!
 				.filterNot { it.extension == "zip" }
 				.single()
 				.absolutePath
