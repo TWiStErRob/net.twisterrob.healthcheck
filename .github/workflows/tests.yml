@@ -1,4 +1,4 @@
-name: Smoke Test
+name: Tests
 on:
   push
 concurrency:
@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   smoke-test:
-    name: Smoke Test
+    name: 2 🧪 Smoke
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
     runs-on: ubuntu-20.04
     timeout-minutes: 5
