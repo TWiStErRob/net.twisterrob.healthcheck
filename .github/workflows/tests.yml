@@ -39,13 +39,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Smoke Test Results HTML
-          path: ${{ github.workspace }}/build/reports/tests/all/
-
-      - name: Upload "Smoke Test Results HTMLs".
-        if: success() || failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: Smoke Test Results HTMLs
           path: ${{ github.workspace }}/build/reports/tests/*/
 
       - name: Publish Test Results
