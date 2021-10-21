@@ -4,10 +4,12 @@ import net.twisterrob.web.test.SmokeTest
 import net.twisterrob.web.test.TestBase
 import net.twisterrob.web.test.tags.justOpen
 import net.twisterrob.web.test.tags.navigation
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
 import org.junit.jupiter.api.Test
 
+@Disabled("twisterrob.uw.hu is dead")
 class IndexPageTest : TestBase() {
 
 	@SmokeTest
