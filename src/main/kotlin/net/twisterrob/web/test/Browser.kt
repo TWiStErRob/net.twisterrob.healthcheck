@@ -2,6 +2,7 @@ package net.twisterrob.web.test
 
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 import java.io.File
 import java.time.Duration
 
@@ -20,7 +21,11 @@ object Browser {
 
 	val driver: WebDriver
 		get() {
-			val driver = ChromeDriver()
+			val driver = ChromeDriver(ChromeOptions().apply {
+				if (Options.headless) {
+					addArguments("--headless")
+				}
+			})
 			driver.manage().apply {
 				timeouts().implicitlyWait(Duration.ofSeconds(10))
 				window().maximize()
