@@ -10,15 +10,15 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.seleniumhq.selenium:selenium-java:3.14.0")
-	implementation("org.assertj:assertj-core:3.11.1")
+	implementation("org.seleniumhq.selenium:selenium-java:4.0.0")
+	implementation("org.assertj:assertj-core:3.21.0")
 
-	val junitVersion = "5.3.0"
+	val junitVersion = "5.8.1"
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
 
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-	testRuntimeOnly("org.junit.platform:junit-platform-console:1.3.0")
+	testRuntimeOnly("org.junit.platform:junit-platform-console:1.8.1")
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

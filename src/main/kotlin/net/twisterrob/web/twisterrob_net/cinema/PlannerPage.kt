@@ -29,12 +29,12 @@ class PlannerPage(driver: WebDriver) : BasePage(driver) {
 
 	override fun open() {
 		check(!::dateLabel.isInitialized) { "Already initialized" }
-		driver.get("http://cinema.twisterrob.net/planner/")
+		driver.get("http://cinema.twisterrob.net/planner")
 		driver.initElements(this)
 	}
 
 	override fun assertOpened() {
-		assertThat(driver.currentUrl).startsWith("http://cinema.twisterrob.net/planner/")
+		assertThat(driver.currentUrl).startsWith("http://cinema.twisterrob.net/planner")
 		assertThat(driver.title).isEqualTo("Cineworld Cinemas Planner - Developer Beta")
 
 		// static content
