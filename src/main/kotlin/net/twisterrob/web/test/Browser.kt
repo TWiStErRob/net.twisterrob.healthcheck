@@ -22,7 +22,9 @@ object Browser {
 	val driver: WebDriver
 		get() {
 			val driver = ChromeDriver(ChromeOptions().apply {
-				addArguments("--headless")
+				if (Options.headless) {
+					addArguments("--headless")
+				}
 			})
 			driver.manage().apply {
 				timeouts().implicitlyWait(Duration.ofSeconds(10))

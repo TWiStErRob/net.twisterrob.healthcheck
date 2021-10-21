@@ -10,6 +10,10 @@
 
  * `*Test` files
 
+## Configuration
+ 
+ * `net.twisterrob.test.selenium.headless` to set up ChromeDriver in headless mode. Used for running on GitHub actions.
+
 ## Deployment
 
 Only CI.

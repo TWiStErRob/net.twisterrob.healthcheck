@@ -25,7 +25,7 @@ jobs:
           npm install
 
       - name: Run Smoke Test
-        run: ./gradlew --no-daemon --stacktrace :smokeTest
+        run: ./gradlew --no-daemon --stacktrace :smokeTest -Pnet.twisterrob.test.selenium.headless=true
 
       - name: Upload "Smoke Test Results XMLs".
         if: success() || failure()
