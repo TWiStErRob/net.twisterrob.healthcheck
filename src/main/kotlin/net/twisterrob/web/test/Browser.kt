@@ -1,5 +1,6 @@
 package net.twisterrob.web.test
 
+import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
@@ -29,6 +30,11 @@ object Browser {
 		})
 		driver.manage().apply {
 			timeouts().implicitlyWait(Duration.ofSeconds(10))
+			if (Options.headless) {
+				// Make sure the window has a size,
+				// because "maximize()" is not enough when there's no window system.
+				window().size = Dimension(1920, 1080)
+			}
 			window().maximize()
 		}
 		return driver
