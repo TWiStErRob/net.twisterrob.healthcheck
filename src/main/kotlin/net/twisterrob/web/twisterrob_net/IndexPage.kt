@@ -20,12 +20,12 @@ class IndexPage(
 
 	override fun open() {
 		check(!::logo.isInitialized) { "Already initialized" }
-		driver.get("http://www.twisterrob.net/")
+		driver.get("https://www.twisterrob.net/")
 		driver.initElements(this)
 	}
 
 	override fun assertOpened() {
-		assertThat(driver.currentUrl).isEqualTo("http://www.twisterrob.net/")
+		assertThat(driver.currentUrl).isEqualTo("https://www.twisterrob.net/")
 		// TODO dashes?
 		assertThat(driver.title).isEqualTo("TWiStErRob – Professional & Hobby Development site")
 		assertThat(logo.getAttribute("title")).isEqualTo("TWiStErRob — Professional & Hobby Development site")
