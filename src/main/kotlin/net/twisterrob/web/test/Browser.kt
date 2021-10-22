@@ -1,5 +1,6 @@
 package net.twisterrob.web.test
 
+import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
@@ -24,11 +25,19 @@ object Browser {
 	fun createDriver(): WebDriver {
 		val driver = ChromeDriver(ChromeOptions().apply {
 			if (Options.headless) {
-				addArguments("--headless")
+				addArguments(
+					// Make sure window has a size.
+//					"--window-size=1920,1080",
+					// Make sure window has a big size.
+//					"--start-maximized",
+					// And that it has no window.
+					"--headless",
+				)
 			}
 		})
 		driver.manage().apply {
 			timeouts().implicitlyWait(Duration.ofSeconds(10))
+			window().size = Dimension(1920, 1080)
 			window().maximize()
 		}
 		return driver
