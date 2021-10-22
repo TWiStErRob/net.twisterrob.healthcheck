@@ -25,20 +25,18 @@ object Browser {
 	fun createDriver(): WebDriver {
 		val driver = ChromeDriver(ChromeOptions().apply {
 			if (Options.headless) {
-				addArguments(
-					// Make sure window has a size.
-//					"--window-size=1920,1080",
-					// Make sure window has a big size.
-//					"--start-maximized",
-					// And that it has no window.
-					"--headless",
-				)
+				addArguments("--headless")
 			}
 		})
 		driver.manage().apply {
 			timeouts().implicitlyWait(Duration.ofSeconds(10))
-			window().size = Dimension(1920, 1080)
-			window().maximize()
+			if (Options.headless) {
+				// Make sure the window has a size,
+				// because "maximize()" is invalid when there's no window system.
+				window().size = Dimension(1920, 1080)
+			} else {
+				window().maximize()
+			}
 		}
 		return driver
 	}
