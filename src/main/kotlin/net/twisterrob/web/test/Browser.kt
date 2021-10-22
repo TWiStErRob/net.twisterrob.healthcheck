@@ -30,13 +30,10 @@ object Browser {
 		})
 		driver.manage().apply {
 			timeouts().implicitlyWait(Duration.ofSeconds(10))
-			if (Options.headless) {
-				// Make sure the window has a size,
-				// because "maximize()" is invalid when there's no window system.
-				window().size = Dimension(1920, 1080)
-			} else {
-				window().maximize()
-			}
+			// Make sure the window has a size,
+			// because "maximize()" is not enough when there's no window system.
+			window().size = Dimension(1920, 1080)
+			window().maximize()
 		}
 		return driver
 	}
