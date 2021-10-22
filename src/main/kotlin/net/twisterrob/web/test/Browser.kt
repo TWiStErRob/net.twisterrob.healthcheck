@@ -19,17 +19,16 @@ object Browser {
 		)
 	}
 
-	val driver: WebDriver
-		get() {
-			val driver = ChromeDriver(ChromeOptions().apply {
-				if (Options.headless) {
-					addArguments("--headless")
-				}
-			})
-			driver.manage().apply {
-				timeouts().implicitlyWait(Duration.ofSeconds(10))
-				window().maximize()
+	fun createDriver(): WebDriver {
+		val driver = ChromeDriver(ChromeOptions().apply {
+			if (Options.headless) {
+				addArguments("--headless")
 			}
-			return driver
+		})
+		driver.manage().apply {
+			timeouts().implicitlyWait(Duration.ofSeconds(10))
+			window().maximize()
 		}
+		return driver
+	}
 }
