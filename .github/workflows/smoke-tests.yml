@@ -1,9 +1,7 @@
-name: Tests
+name: 'Tests: Smoke'
 on:
   push:
   workflow_dispatch:
-  schedule:
-    - cron:  '0 */3 * * *'
 concurrency:
   # Documentation suggests ${{ github.head_ref }}, but that's only available on pull_request/pull_request_target triggers, so using ${{ github.ref }}.
   # On master, we want all builds to complete even if merging happens faster to make it easier to discover at which point something broke.
@@ -12,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   smoke-test:
-    name: 2 🧪 Smoke
+    name: 2 🧪 Tests
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
     runs-on: ubuntu-20.04
     timeout-minutes: 5
@@ -50,50 +48,6 @@ jobs:
         with:
           check_name: 0 🔔 Smoke Test Results
           comment_title: Smoke Test Results
-          report_individual_runs: true
-          test_changes_limit: 0
-          files: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
-
-
-  all-test:
-    name: 2 🧪 All
-    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
-    runs-on: ubuntu-20.04
-    timeout-minutes: 5
-    steps:
-      - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
-        uses: actions/checkout@v2
-
-      - name: Check Dependencies
-        run: |
-          ./gradlew --version
-          node -v
-          npm -v
-          npm install
-
-      - name: Run All Test
-        run: ./gradlew --no-daemon --stacktrace :test -Pnet.twisterrob.test.selenium.headless=true
-
-      - name: Upload "All Test Results XMLs".
-        if: success() || failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: All Test Results XMLs
-          path: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
-
-      - name: Upload "All Test Results HTML".
-        if: success() || failure()
-        uses: actions/upload-artifact@v2
-        with:
-          name: All Test Results HTML
-          path: ${{ github.workspace }}/build/reports/tests/*/
-
-      - name: Publish Test Results
-        if: success() || failure()
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        with:
-          check_name: 0 🔔 All Test Results
-          comment_title: All Test Results
           report_individual_runs: true
           test_changes_limit: 0
           files: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
