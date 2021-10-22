@@ -9,27 +9,28 @@ import java.time.Duration
 object Browser {
 
 	init {
-		System.setProperty(
-			"webdriver.chrome.driver",
-			File("node_modules/webdriver-manager/selenium")
-				.listFiles { _, fileName: String -> fileName.startsWith("chromedriver_") }!!
-				.filterNot { it.extension == "zip" }
-				.single()
-				.absolutePath
-		)
+		System.setProperty("webdriver.chrome.driver", findSeleniumChromeDriverExecutable().absolutePath)
 	}
 
-	val driver: WebDriver
-		get() {
-			val driver = ChromeDriver(ChromeOptions().apply {
-				if (Options.headless) {
-					addArguments("--headless")
-				}
-			})
-			driver.manage().apply {
-				timeouts().implicitlyWait(Duration.ofSeconds(10))
-				window().maximize()
+	private fun findSeleniumChromeDriverExecutable(): File =
+		File("node_modules/webdriver-manager/selenium")
+			.listFiles { _, fileName: String ->
+				// Not .zip means .exe or no extension for unix.
+				fileName.startsWith("chromedriver_") && !fileName.endsWith(".zip")
 			}
-			return driver
+			.orEmpty()
+			.single()
+
+	fun createDriver(): WebDriver {
+		val driver = ChromeDriver(ChromeOptions().apply {
+			if (Options.headless) {
+				addArguments("--headless")
+			}
+		})
+		driver.manage().apply {
+			timeouts().implicitlyWait(Duration.ofSeconds(10))
+			window().maximize()
 		}
+		return driver
+	}
 }

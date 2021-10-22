@@ -8,7 +8,9 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class IndexPage(driver: WebDriver) : BasePage(driver) {
+class IndexPage(
+	driver: WebDriver
+) : BasePage(driver) {
 
 	@FindBy(id = "logo")
 	private lateinit var logo: WebElement

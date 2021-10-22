@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class AboutPage(driver: WebDriver) : BasePage(driver) {
+class AboutPage(
+	driver: WebDriver
+) : BasePage(driver) {
 
 	@FindBy(css = "article h1")
 	private lateinit var heading: WebElement

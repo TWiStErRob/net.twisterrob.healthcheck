@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class MyPagePage(driver: WebDriver) : BaseUltraWebPage(driver, framed = false) {
+class MyPagePage(
+	driver: WebDriver
+) : BaseUltraWebPage(driver, framed = false) {
 
 	@FindBy(css = "h2")
 	private lateinit var header: WebElement

@@ -11,7 +11,9 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 import java.time.LocalDate
 
-class PlannerPage(driver: WebDriver) : BasePage(driver) {
+class PlannerPage(
+	driver: WebDriver
+) : BasePage(driver) {
 
 	@FindBy(id = "cineworldDate-display")
 	private lateinit var dateLabel: WebElement
@@ -20,10 +22,12 @@ class PlannerPage(driver: WebDriver) : BasePage(driver) {
 	private lateinit var performancesEmpty: WebElement
 
 	private object Cinemas {
+
 		val london: By = cssSelector("#cinemas-list-london li")
 	}
 
 	private object Films {
+
 		val new: By = cssSelector("#films-list li")
 	}
 

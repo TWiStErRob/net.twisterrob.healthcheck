@@ -9,23 +9,28 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class RegexPage(driver: WebDriver) : BasePage(driver) {
+class RegexPage(
+	driver: WebDriver
+) : BasePage(driver) {
 
 	@FindBy(tagName = "h1")
 	private lateinit var header: WebElement
 
 	@FindBy(id = "search")
 	private lateinit var search: WebElement
+
 	@FindBy(id = "replace")
 	private lateinit var replace: WebElement
 
 	@FindBy(id = "input")
 	private lateinit var input: WebElement
+
 	@FindBy(id = "output")
 	private lateinit var output: WebElement
 
 	@FindBy(css = "input[value='Test']")
 	private lateinit var testButton: WebElement
+
 	@FindBy(id = "gsonDebug")
 	private lateinit var debug: WebElement
 

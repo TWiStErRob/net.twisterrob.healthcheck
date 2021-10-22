@@ -7,8 +7,9 @@ import org.assertj.core.util.CheckReturnValue
 import org.openqa.selenium.WebElement
 import kotlin.reflect.KFunction1
 
-class WebElementAssert(element: WebElement) :
-	AbstractAssert<WebElementAssert, WebElement>(element, WebElementAssert::class.java) {
+class WebElementAssert(
+	element: WebElement
+) : AbstractAssert<WebElementAssert, WebElement>(element, WebElementAssert::class.java) {
 
 	fun isSelected(): WebElementAssert = check(WebElement::isSelected, "selected")
 	fun isNotSelected(): WebElementAssert = check(WebElement::isSelected, "selected")
@@ -38,25 +39,29 @@ class WebElementAssert(element: WebElement) :
 	}
 
 	@CheckReturnValue
-	fun text(): AbstractStringAssert<*> = assertThat(
-		when (actual.tagName) {
+	fun text(): AbstractStringAssert<*> {
+		val text = when (actual.tagName) {
 			"textarea" -> actual.getAttribute("value")
 			else -> actual.text
 		}
-	)
+		return assertThat(text)
+	}
 
-	private fun check(property: KFunction1<WebElement, Boolean>, propertyName: String) = apply {
+	@CheckReturnValue
+	private fun check(property: KFunction1<WebElement, Boolean>, propertyName: String): WebElementAssert = apply {
 		if (!property(actual)) {
 			failWithMessage("Expected element to be $propertyName. But was not!")
 		}
 	}
 
-	private fun checkNot(property: KFunction1<WebElement, Boolean>, propertyName: String) = apply {
+	@CheckReturnValue
+	private fun checkNot(property: KFunction1<WebElement, Boolean>, propertyName: String): WebElementAssert = apply {
 		if (property(actual)) {
 			failWithMessage("Expected element to not be $propertyName. But was!")
 		}
 	}
 
+	@CheckReturnValue
 	private fun apply(block: WebElementAssert.() -> Unit): WebElementAssert {
 		isNotNull
 		block()
@@ -64,5 +69,7 @@ class WebElementAssert(element: WebElement) :
 	}
 }
 
+@Suppress("NOTHING_TO_INLINE")
 @CheckReturnValue
-fun assertThat(element: WebElement): WebElementAssert = WebElementAssert(element)
+inline fun assertThat(element: WebElement): WebElementAssert =
+	WebElementAssert(element)

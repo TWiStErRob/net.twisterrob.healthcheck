@@ -2,7 +2,9 @@ package net.twisterrob.web.test
 
 import org.openqa.selenium.WebDriver
 
-abstract class BasePage(protected val driver: WebDriver) {
+abstract class BasePage(
+	protected val driver: WebDriver
+) {
 
 	/**
 	 * Open the page and initialize all the bindings.

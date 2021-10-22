@@ -6,7 +6,9 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class IndexPage(driver: WebDriver) : BaseUltraWebPage(driver) {
+class IndexPage(
+	driver: WebDriver
+) : BaseUltraWebPage(driver) {
 
 	@FindBy(css = "a[href='/mypage/index.php']")
 	private lateinit var myPageLink: WebElement

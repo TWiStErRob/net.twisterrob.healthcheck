@@ -14,6 +14,7 @@ object tags {
 
 	/**
 	 * Smoke tests to be run to check that all websites and services are up and running.
+	 * @see SmokeTest
 	 */
 	@Deprecated("Use the annotation", ReplaceWith("@SmokeTest"))
 	const val smoke = "smoke"

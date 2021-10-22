@@ -1,22 +1,27 @@
 package net.twisterrob.web.twisterrob_net.regex
 
 import net.twisterrob.web.test.SmokeTest
-import net.twisterrob.web.test.TestBase
+import net.twisterrob.web.test.WebDriverExtension
 import net.twisterrob.web.test.openTest
 import net.twisterrob.web.test.tags.interaction
 import net.twisterrob.web.test.tags.justOpen
+import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import org.junit.jupiter.api.extension.ExtendWith
+import org.openqa.selenium.WebDriver
 
-class RegexPageTest : TestBase() {
+@ExtendWith(WebDriverExtension::class)
+class RegexPageTest {
+
+	@Order(0)
+	@Tags(Tag(justOpen))
+	@TestFactory fun openTest(driver: WebDriver) = openTest<RegexPage>(driver)
 
 	@Tags(Tag(justOpen))
-	@TestFactory fun openTest() = openTest<RegexPage>(driver)
-
-	@Tags(Tag(justOpen))
-	@Test fun `preset data is filled in`() {
+	@Test fun `preset data is filled in`(driver: WebDriver) {
 		val page = RegexPage(driver)
 
 		page.open()
@@ -30,7 +35,7 @@ class RegexPageTest : TestBase() {
 
 	@SmokeTest
 	@Tags(Tag(interaction))
-	@Test fun `test button executes`() {
+	@Test fun `test button executes`(driver: WebDriver) {
 		val page = RegexPage(driver)
 		page.open()
 
@@ -44,7 +49,7 @@ class RegexPageTest : TestBase() {
 	}
 
 	@Tags(Tag(interaction))
-	@Test fun `Java example changes form`() {
+	@Test fun `Java example changes form`(driver: WebDriver) {
 		val page = RegexPage(driver)
 		page.open()
 
