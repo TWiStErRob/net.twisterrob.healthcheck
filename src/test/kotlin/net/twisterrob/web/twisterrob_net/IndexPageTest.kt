@@ -46,9 +46,22 @@ class IndexPageTest {
 		page.assertOpened()
 	}
 
+	/**
+	 * Testing https://github.blog/2018-05-01-github-pages-custom-domains-https/#configuring-your-domain.
+	 */
+	@Tags(Tag(navigation))
+	@Test fun `redirects from unsecure GitHub raw name`(driver: WebDriver) {
+		@Suppress("HttpUrlsUsage")
+		driver.get("http://twisterrob.github.io")
+
+		val page: IndexPage = driver.createPage()
+
+		page.assertOpened()
+	}
+
 	@Tags(Tag(navigation))
 	@Test fun `redirects from GitHub raw name`(driver: WebDriver) {
-		driver.get("http://twisterrob.github.io")
+		driver.get("https://twisterrob.github.io")
 
 		val page: IndexPage = driver.createPage()
 

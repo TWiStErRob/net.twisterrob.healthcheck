@@ -26,6 +26,10 @@ class IndexPage(
 
 	override fun assertOpened() {
 		assertThat(driver.currentUrl).isEqualTo("https://www.twisterrob.net/")
+		assertTitle()
+	}
+
+	private fun assertTitle() {
 		// TODO dashes?
 		assertThat(driver.title).isEqualTo("TWiStErRob – Professional & Hobby Development site")
 		assertThat(logo.getAttribute("title")).isEqualTo("TWiStErRob — Professional & Hobby Development site")
