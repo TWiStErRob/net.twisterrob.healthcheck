@@ -48,6 +48,11 @@ class IndexPageTest {
 
 	/**
 	 * Testing https://github.blog/2018-05-01-github-pages-custom-domains-https/#configuring-your-domain.
+	 *
+	 * See https://github.com/TWiStErRob/twisterrob.github.io/settings/pages
+	 * > *Enforce HTTPS*
+	 * > HTTPS provides a layer of encryption that prevents others from snooping on or tampering with traffic to your site.
+	 * > When HTTPS is enforced, your site will only be served over HTTPS.
 	 */
 	@Tags(Tag(navigation))
 	@Test fun `redirects from unsecure GitHub raw name`(driver: WebDriver) {
