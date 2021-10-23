@@ -46,9 +46,27 @@ class IndexPageTest {
 		page.assertOpened()
 	}
 
+	/**
+	 * Testing https://github.blog/2018-05-01-github-pages-custom-domains-https/#configuring-your-domain.
+	 *
+	 * See https://github.com/TWiStErRob/twisterrob.github.io/settings/pages
+	 * > *Enforce HTTPS*
+	 * > HTTPS provides a layer of encryption that prevents others from snooping on or tampering with traffic to your site.
+	 * > When HTTPS is enforced, your site will only be served over HTTPS.
+	 */
+	@Tags(Tag(navigation))
+	@Test fun `redirects from unsecure GitHub raw name`(driver: WebDriver) {
+		@Suppress("HttpUrlsUsage")
+		driver.get("http://twisterrob.github.io")
+
+		val page: IndexPage = driver.createPage()
+
+		page.assertOpened()
+	}
+
 	@Tags(Tag(navigation))
 	@Test fun `redirects from GitHub raw name`(driver: WebDriver) {
-		driver.get("http://twisterrob.github.io")
+		driver.get("https://twisterrob.github.io")
 
 		val page: IndexPage = driver.createPage()
 

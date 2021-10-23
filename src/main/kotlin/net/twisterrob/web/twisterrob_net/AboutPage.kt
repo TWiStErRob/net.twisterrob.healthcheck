@@ -20,12 +20,12 @@ class AboutPage(
 
 	override fun open() {
 		check(!::heading.isInitialized) { "Already initialized" }
-		driver.get("http://www.twisterrob.net/info/")
+		driver.get("https://www.twisterrob.net/info/")
 		driver.initElements(this)
 	}
 
 	override fun assertOpened() {
-		assertThat(driver.currentUrl).isEqualTo("http://www.twisterrob.net/info/")
+		assertThat(driver.currentUrl).isEqualTo("https://www.twisterrob.net/info/")
 		assertThat(driver.title).isEqualTo("About")
 		assertThat(heading.text).isEqualTo("About")
 	}
