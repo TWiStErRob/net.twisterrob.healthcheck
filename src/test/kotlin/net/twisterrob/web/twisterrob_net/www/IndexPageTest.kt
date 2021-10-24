@@ -15,7 +15,6 @@ import org.openqa.selenium.WebDriver
 @ExtendWith(WebDriverExtension::class)
 class IndexPageTest {
 
-	@SmokeTest
 	@Tags(Tag(justOpen))
 	@Test fun `home page can start up`(driver: WebDriver) {
 		val page = IndexPage(driver)
@@ -53,7 +52,6 @@ class IndexPageTest {
 	}
 
 	@Disabled("No HTTPS certificate set up for naked, only for www")
-	@SmokeTest
 	@Tags(Tag(navigation))
 	@Test fun `redirects from naked domain`(driver: WebDriver) {
 		driver.get("https://twisterrob.net")
