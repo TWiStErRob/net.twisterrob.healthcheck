@@ -52,6 +52,17 @@ class IndexPageTest {
 		page.assertOpened()
 	}
 
+	@Disabled("No HTTPS certificate set up for naked, only for www")
+	@SmokeTest
+	@Tags(Tag(navigation))
+	@Test fun `redirects from naked domain`(driver: WebDriver) {
+		driver.get("https://twisterrob.net")
+
+		val page: IndexPage = driver.createPage()
+
+		page.assertOpened()
+	}
+
 	/**
 	 * Testing https://github.blog/2018-05-01-github-pages-custom-domains-https/#configuring-your-domain.
 	 *
