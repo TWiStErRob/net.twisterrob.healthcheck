@@ -11,6 +11,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.seleniumhq.selenium:selenium-java:4.0.0")
+	implementation("io.github.bonigarcia:webdrivermanager:5.0.3")
 	implementation("org.assertj:assertj-core:3.21.0")
 
 	val junitVersion = "5.8.1"
@@ -37,12 +38,21 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 	}
 }
 
+// Configure JUnit 5
 tasks.withType<Test> {
 	useJUnitPlatform {
 	}
+}
+
+// Configure Console logging
+tasks.withType<Test> {
 	testLogging {
 		events("passed", "skipped", "failed")
 	}
+}
+
+// Configure global test parameters.
+tasks.withType<Test> {
 	val propertyNamesToExposeToJUnitTests = listOf(
 		"net.twisterrob.test.selenium.headless"
 	)
