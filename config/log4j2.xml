@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration
+	xmlns="http://logging.apache.org/log4j/2.0/config"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	strict="true"
+	status="warn"
+	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/apache/logging-log4j2/master/log4j-core/src/main/resources/Log4j-config.xsd"
+>
+	<!--
+		Note: to debug Log4j, set status="trace"
+	-->
+
+	<Properties>
+		<Property name="pattern">%highlight{%date{ISO8601} %-5level [%thread] %message%n%throwable</Property>
+		<!-- See org.apache.logging.log4j.core.pattern.AnsiEscape for keywords  -->
+		<!-- %highlight separates keywords by spaces, %style separates keywords by commas! -->
+		<Property name="pattern_level_colors">
+			FATAL=bright magenta, ERROR=bright red, WARN=bright yellow, INFO=dim white, DEBUG=bright black, TRACE=cyan
+		</Property>
+		<!-- Whitespace within color configuration (highlight/style) will be ignored -->
+		<Property name="pattern_styled">%highlight{%date{ISO8601} %-5level [%thread] %logger(%file:%line)}{${
+		pattern_level_colors}} %style{%message}{bright white}%n%style{%throwable}{BG_red,white}
+		</Property>
+	</Properties>
+
+	<ThresholdFilter level="TRACE" onMatch="neutral" onMismatch="deny" />
+
+	<Appenders>
+		<Appender type="Console" name="console">
+			<Layout type="PatternLayout" pattern="${pattern}" />
+		</Appender>
+		<Appender type="Console" name="color-console">
+			<Layout type="PatternLayout" pattern="${pattern_styled}" />
+		</Appender>
+	</Appenders>
+
+	<Loggers>
+		<Root level="ALL">
+			<AppenderRef ref="color-console" />
+		</Root>
+
+		<!-- Enable lots of logs. -->
+		<Logger name="net.twisterrob" level="ALL" />
+
+		<Logger name="org.junit" level="WARN" />
+		<Logger name="org.openqa.selenium" level="INFO" />
+		<Logger name="io.github.bonigarcia" level="INFO" />
+
+		<Logger name="javax.management" level="INFO" />
+		<Logger name="io.netty" level="INFO" />
+		<Logger name="org.asynchttpclient" level="INFO" />
+		<Logger name="org.apache.hc.client5" level="INFO" />
+		<Logger name="sun.net.www.protocol.http" level="INFO" />
+
+	</Loggers>
+
+</Configuration>

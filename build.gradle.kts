@@ -20,6 +20,8 @@ dependencies {
 
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 	testRuntimeOnly("org.junit.platform:junit-platform-console:1.8.1")
+	testRuntimeOnly("org.slf4j:jul-to-slf4j:1.7.32")
+	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
 }
 
 val javaVersion = JavaVersion.VERSION_1_8
@@ -48,6 +50,30 @@ tasks.withType<Test> {
 tasks.withType<Test> {
 	testLogging {
 		events("passed", "skipped", "failed")
+	}
+}
+
+// Configure logging
+tasks.withType<Test> {
+	jvmArgs(
+		"-Djava.util.logging.config.file=${rootProject.file("config/logging.properties")}"
+	)
+}
+project.tasks {
+	val sourceSets = project.the<JavaPluginConvention>().sourceSets
+	val copyLoggingResources = register<Copy>("copyLoggingResources") {
+		from(rootProject.file("config/log4j2.xml"))
+		into(sourceSets["main"].resources.srcDirs.first())
+	}
+	"processResources" {
+		dependsOn(copyLoggingResources)
+	}
+	val copyLoggingTestResources = register<Copy>("copyLoggingTestResources") {
+		from(rootProject.file("config/log4j2.xml"))
+		into(sourceSets["test"].resources.srcDirs.first())
+	}
+	"processTestResources"{
+		dependsOn(copyLoggingTestResources)
 	}
 }
 
