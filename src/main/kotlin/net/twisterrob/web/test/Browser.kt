@@ -1,33 +1,31 @@
 package net.twisterrob.web.test
 
+import io.github.bonigarcia.wdm.WebDriverManager
+import org.apache.logging.log4j.io.IoBuilder
 import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeDriverService
 import org.openqa.selenium.chrome.ChromeOptions
-import java.io.File
 import java.time.Duration
 
 object Browser {
 
 	init {
-		System.setProperty("webdriver.chrome.driver", findSeleniumChromeDriverExecutable().absolutePath)
+		WebDriverManager.chromedriver().setup()
 	}
 
-	private fun findSeleniumChromeDriverExecutable(): File =
-		File("node_modules/webdriver-manager/selenium")
-			.listFiles { _, fileName: String ->
-				// Not .zip means .exe or no extension for unix.
-				fileName.startsWith("chromedriver_") && !fileName.endsWith(".zip")
-			}
-			.orEmpty()
-			.single()
-
 	fun createDriver(): WebDriver {
-		val driver = ChromeDriver(ChromeOptions().apply {
+		val options = ChromeOptions().apply {
 			if (Options.headless) {
 				addArguments("--headless")
 			}
-		})
+		}
+		val service = ChromeDriverService.createServiceWithConfig(options).apply {
+			// Uses platform's encoding via Charset.defaultCharset().
+			sendOutputTo(IoBuilder.forLogger(ChromeDriver::class.java).buildOutputStream())
+		}
+		val driver = ChromeDriver(service, options)
 		driver.manage().apply {
 			timeouts().implicitlyWait(Duration.ofSeconds(10))
 			if (Options.headless) {
