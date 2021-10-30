@@ -12,6 +12,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.seleniumhq.selenium:selenium-java:4.0.0")
 	implementation("io.github.bonigarcia:webdrivermanager:5.0.3")
+	implementation("org.apache.logging.log4j:log4j-iostreams:2.14.1")
 	implementation("org.assertj:assertj-core:3.21.0")
 
 	val junitVersion = "5.8.1"
