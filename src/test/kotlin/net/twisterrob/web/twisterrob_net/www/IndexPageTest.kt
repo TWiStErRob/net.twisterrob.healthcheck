@@ -15,7 +15,6 @@ import org.openqa.selenium.WebDriver
 @ExtendWith(WebDriverExtension::class)
 class IndexPageTest {
 
-	@SmokeTest
 	@Tags(Tag(justOpen))
 	@Test fun `home page can start up`(driver: WebDriver) {
 		val page = IndexPage(driver)
@@ -35,11 +34,27 @@ class IndexPageTest {
 		about.assertOpened()
 	}
 
-	@Disabled(".htaccess is not deployed")
+	/**
+	 * See https://admin.google.com/u/2/ac/domains/manage
+	 * > *Change how your naked domain (twisterrob.net) is redirected*
+	 * > Designate a web address to direct your users to when they access your naked domain: http://twisterrob.net
+	 * > You must change the A record at your domain host for this change to take effect.
+	 * > http://www.twisterrob.net
+	 */
 	@SmokeTest
 	@Tags(Tag(navigation))
-	@Test fun `redirects from naked domain`(driver: WebDriver) {
+	@Test fun `redirects and secures from naked unsecure domain`(driver: WebDriver) {
 		driver.get("http://twisterrob.net")
+
+		val page: IndexPage = driver.createPage()
+
+		page.assertOpened()
+	}
+
+	@Disabled("No HTTPS certificate set up for naked, only for www")
+	@Tags(Tag(navigation))
+	@Test fun `redirects from naked domain`(driver: WebDriver) {
+		driver.get("https://twisterrob.net")
 
 		val page: IndexPage = driver.createPage()
 
@@ -55,7 +70,7 @@ class IndexPageTest {
 	 * > When HTTPS is enforced, your site will only be served over HTTPS.
 	 */
 	@Tags(Tag(navigation))
-	@Test fun `redirects from unsecure GitHub raw name`(driver: WebDriver) {
+	@Test fun `redirects and secures from unsecure GitHub raw name`(driver: WebDriver) {
 		@Suppress("HttpUrlsUsage")
 		driver.get("http://twisterrob.github.io")
 
