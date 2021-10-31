@@ -22,7 +22,7 @@ jobs:
 
   test-all:
     name: 'Tests'
-    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@master
     with:
       name: 'All'
       test-task: ':test'
@@ -30,7 +30,7 @@ jobs:
 
   test-smoke:
     name: 'Tests'
-    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@master
     with:
       name: 'Smoke'
       test-task: ':smokeTest'
