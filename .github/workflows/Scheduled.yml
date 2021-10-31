@@ -1,0 +1,41 @@
+name: 'Scheduled'
+on:
+  # STOPSHIP remove
+  push:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/#0_6_*_*_*
+    - cron:  '0 6 * * *'
+
+jobs:
+  test-cinema:
+    name: 'Cinema'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    with:
+      name: 'cinema.twisterrob.net'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_net.cinema.*'
+
+  test-regex:
+    name: 'Regex'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    with:
+      name: 'regex.twisterrob.net'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_net.regex.*'
+
+  test-web:
+    name: '2 🧪 Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    with:
+      name: 'www.twisterrob.net'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_net.*'
+
+  test-uw:
+    name: '2 🧪 Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    with:
+      name: 'twisterrob.uw.hu'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_uw_hu.*'
