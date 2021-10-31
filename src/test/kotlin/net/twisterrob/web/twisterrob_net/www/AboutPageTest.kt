@@ -1,4 +1,4 @@
-package net.twisterrob.web.twisterrob_net
+package net.twisterrob.web.twisterrob_net.www
 
 import net.twisterrob.web.test.WebDriverExtension
 import net.twisterrob.web.test.tags.content

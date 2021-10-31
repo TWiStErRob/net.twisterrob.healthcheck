@@ -1,0 +1,40 @@
+name: 'Scheduled'
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/#0_6_*_*_*
+    - cron:  '0 6 * * *'
+
+jobs:
+  test-cinema:
+    name: 'Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@master
+    with:
+      name: 'cinema.twisterrob.net'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_net.cinema.*'
+
+  test-regex:
+    name: 'Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@master
+    with:
+      name: 'regex.twisterrob.net'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_net.regex.*'
+
+  test-web:
+    name: 'Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@master
+    with:
+      name: 'www.twisterrob.net'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_net.www.*'
+
+  test-uw:
+    name: 'Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@master
+    with:
+      name: 'twisterrob.uw.hu'
+      test-task: ':test'
+      test-pattern: 'net.twisterrob.web.twisterrob_uw_hu.*'
