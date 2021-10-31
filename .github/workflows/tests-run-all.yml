@@ -13,7 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   all-test:
-    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@${{ github.ref }}
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'All'
       test-task: ':test'
