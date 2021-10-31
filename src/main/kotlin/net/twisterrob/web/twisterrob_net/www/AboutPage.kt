@@ -1,4 +1,4 @@
-package net.twisterrob.web.twisterrob_net
+package net.twisterrob.web.twisterrob_net.www
 
 import net.twisterrob.selenium.initElements
 import net.twisterrob.web.test.BasePage
