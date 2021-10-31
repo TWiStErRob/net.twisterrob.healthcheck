@@ -29,9 +29,7 @@ jobs:
       - name: Check Dependencies
         run: |
           ./gradlew --version
-          node -v
-          npm -v
-          npm install
+          google-chrome --version
 
       - name: Run ${{ inputs.name }} (${{ inputs.test-pattern }}) Tests
         run: >
