@@ -57,7 +57,7 @@ jobs:
         if: success() || failure()
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          check_name: 0 🔔 Test ${{ inputs.name }} Results
+          check_name: Results / ${{ inputs.name }}
           comment_title: Test ${{ inputs.name }} (${{ inputs.test-pattern }}) Results
           report_individual_runs: true
           test_changes_limit: 0

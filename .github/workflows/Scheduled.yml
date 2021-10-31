@@ -8,7 +8,7 @@ on:
 
 jobs:
   test-cinema:
-    name: 'Cinema'
+    name: 'Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'cinema.twisterrob.net'
@@ -16,7 +16,7 @@ jobs:
       test-pattern: 'net.twisterrob.web.twisterrob_net.cinema.*'
 
   test-regex:
-    name: 'Regex'
+    name: 'Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'regex.twisterrob.net'
@@ -24,7 +24,7 @@ jobs:
       test-pattern: 'net.twisterrob.web.twisterrob_net.regex.*'
 
   test-web:
-    name: '2 🧪 Tests'
+    name: 'Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'www.twisterrob.net'
@@ -32,7 +32,7 @@ jobs:
       test-pattern: 'net.twisterrob.web.twisterrob_net.*'
 
   test-uw:
-    name: '2 🧪 Tests'
+    name: 'Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'twisterrob.uw.hu'

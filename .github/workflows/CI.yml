@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build:
-    name: 1 🔨 Build
+    name: 'Build'
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
     runs-on: ubuntu-20.04
     timeout-minutes: 5
@@ -21,7 +21,7 @@ jobs:
         run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses
 
   test-all:
-    name: '2 🧪 Tests'
+    name: 'Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'All'
@@ -29,7 +29,7 @@ jobs:
       test-pattern: '*'
 
   test-smoke:
-    name: '2 🧪 Tests'
+    name: 'Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'Smoke'
