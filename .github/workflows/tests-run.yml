@@ -1,5 +1,3 @@
-name: 'Tests: Specific'
-
 on:
   workflow_call:
     inputs:
@@ -20,7 +18,7 @@ on:
 
 jobs:
   all-test:
-    name: '2 🧪 Tests: ${{ inputs.name }}'
+    name: '${{ inputs.name }}'
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
     runs-on: ubuntu-20.04
     timeout-minutes: 5

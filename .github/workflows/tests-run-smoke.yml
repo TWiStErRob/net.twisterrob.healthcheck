@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   smoke-test:
+    name: '2 🧪 Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'Smoke'

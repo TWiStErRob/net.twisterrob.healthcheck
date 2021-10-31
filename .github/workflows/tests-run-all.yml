@@ -1,4 +1,4 @@
-name: 'Tests: All'
+name: 'CI'
 on:
   push:
   workflow_dispatch:
@@ -13,6 +13,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   all-test:
+    name: '2 🧪 Tests'
     uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
     with:
       name: 'All'
