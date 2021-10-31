@@ -1,6 +1,5 @@
 name: 'Scheduled'
 on:
-  # STOPSHIP remove
   push:
   workflow_dispatch:
   schedule:
