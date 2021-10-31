@@ -10,7 +10,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   smoke-test:
-    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/run-tests.yml@${{ github.ref }}
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/run-tests.yml@stripe
     with:
       name: 'Smoke'
       test-task: ':smokeTest'
