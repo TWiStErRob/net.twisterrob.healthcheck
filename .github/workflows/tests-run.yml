@@ -1,0 +1,68 @@
+name: 'Tests: Specific'
+
+on:
+  workflow_call:
+    inputs:
+      name:
+        description: 'Display name and artifact name'
+        required: true
+        type: string
+      test-task:
+        description: 'Gradle test task(s) to run'
+        required: true
+        type: string
+        default: ':test'
+      test-pattern:
+        description: 'https://docs.gradle.org/current/userguide/java_testing.html#test_filtering'
+        required: true
+        type: string
+        default: '*'
+
+jobs:
+  all-test:
+    name: '2 🧪 Tests: ${{ inputs.name }}'
+    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
+    runs-on: ubuntu-20.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
+        uses: actions/checkout@v2
+
+      - name: Check Dependencies
+        run: |
+          ./gradlew --version
+          node -v
+          npm -v
+          npm install
+
+      - name: Run ${{ inputs.name }} (${{ inputs.test-pattern }}) Tests
+        run: >
+          ./gradlew
+          --no-daemon
+          --stacktrace
+          ${{ inputs.test-task }} --tests "${{ inputs.test-pattern }}"
+          -Pnet.twisterrob.test.selenium.headless=true
+
+      - name: Upload "Test ${{ inputs.name }} Results XMLs".
+        if: success() || failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test ${{ inputs.name }} Results XMLs
+          path: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
+
+      - name: Upload "Test ${{ inputs.name }} Results HTML".
+        if: success() || failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test ${{ inputs.name }} Results HTML
+          path: ${{ github.workspace }}/build/reports/tests/*/
+
+      - name: Publish ${{ inputs.name }} Test Results
+        if: success() || failure()
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        with:
+          check_name: 0 🔔 Test ${{ inputs.name }} Results
+          comment_title: Test ${{ inputs.name }} (${{ inputs.test-pattern }}) Results
+          report_individual_runs: true
+          test_changes_limit: 0
+          files: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
