@@ -19,3 +19,19 @@ jobs:
 
       - name: Build
         run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses
+
+  test-all:
+    name: '2 🧪 Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    with:
+      name: 'All'
+      test-task: ':test'
+      test-pattern: '*'
+
+  test-smoke:
+    name: '2 🧪 Tests'
+    uses: TWiStErRob/net.twisterrob.healthcheck/.github/workflows/tests-run.yml@stripe
+    with:
+      name: 'Smoke'
+      test-task: ':smokeTest'
+      test-pattern: '*'
