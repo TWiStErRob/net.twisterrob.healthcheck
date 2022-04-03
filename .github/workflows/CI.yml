@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Build
         run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses
