@@ -1,5 +1,5 @@
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.5.31"
+	id("org.jetbrains.kotlin.jvm") version "1.6.20"
 }
 
 repositories {
@@ -10,19 +10,19 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.seleniumhq.selenium:selenium-java:4.0.0")
-	implementation("io.github.bonigarcia:webdrivermanager:5.0.3")
-	implementation("org.apache.logging.log4j:log4j-iostreams:2.14.1")
-	implementation("org.assertj:assertj-core:3.21.0")
+	implementation("org.seleniumhq.selenium:selenium-java:4.1.3")
+	implementation("io.github.bonigarcia:webdrivermanager:5.1.0")
+	implementation("org.apache.logging.log4j:log4j-iostreams:2.17.2")
+	implementation("org.assertj:assertj-core:3.22.0")
 
-	val junitVersion = "5.8.1"
+	val junitVersion = "5.8.2"
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
 
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-	testRuntimeOnly("org.junit.platform:junit-platform-console:1.8.1")
-	testRuntimeOnly("org.slf4j:jul-to-slf4j:1.7.32")
-	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.14.1")
+	testRuntimeOnly("org.junit.platform:junit-platform-console:1.8.2")
+	testRuntimeOnly("org.slf4j:jul-to-slf4j:1.7.36")
+	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.17.2")
 }
 
 val javaVersion = JavaVersion.VERSION_1_8
