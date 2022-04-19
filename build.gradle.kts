@@ -1,5 +1,5 @@
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.6.20"
+	id("org.jetbrains.kotlin.jvm") version "1.6.21"
 }
 
 repositories {
@@ -11,7 +11,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.seleniumhq.selenium:selenium-java:4.1.3")
-	implementation("io.github.bonigarcia:webdrivermanager:5.1.0")
+	implementation("io.github.bonigarcia:webdrivermanager:5.1.1")
 	// TODEL when upgrading webdrivermanager Listed because they have vulnerabilities.
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.2.2")
 	implementation("commons-io:commons-io:2.11.0")
