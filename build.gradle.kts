@@ -18,7 +18,7 @@ dependencies {
 	implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 
 	implementation("org.apache.logging.log4j:log4j-iostreams:2.17.2")
-	implementation("org.assertj:assertj-core:3.23.0")
+	implementation("org.assertj:assertj-core:3.23.1")
 
 	val junitVersion = "5.8.2"
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
