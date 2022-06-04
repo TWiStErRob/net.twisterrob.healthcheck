@@ -26,12 +26,12 @@ jobs:
       - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
         uses: actions/checkout@v3
 
-      - name: Check Dependencies
+      - name: List dependency versions.
         run: |
           ./gradlew --version
           google-chrome --version
 
-      - name: Run ${{ inputs.name }} (${{ inputs.test-pattern }}) Tests
+      - name: Run ${{ inputs.name }} (${{ inputs.test-pattern }}) Tests.
         run: >
           ./gradlew
           --no-daemon
@@ -53,7 +53,7 @@ jobs:
           name: Test ${{ inputs.name }} Results HTML
           path: ${{ github.workspace }}/build/reports/tests/*/
 
-      - name: Publish ${{ inputs.name }} Test Results
+      - name: Publish "Results / ${{ inputs.name }}".
         if: success() || failure()
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
