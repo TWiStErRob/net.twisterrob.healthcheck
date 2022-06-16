@@ -32,10 +32,9 @@ dependencies {
 
 val javaVersion = JavaVersion.VERSION_1_8
 
-plugins.withId("java") {
-	val java = convention.getPluginByName<JavaPluginConvention>("java")
-	java.sourceCompatibility = javaVersion
-	java.targetCompatibility = javaVersion
+java {
+	sourceCompatibility = javaVersion
+	targetCompatibility = javaVersion
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -66,17 +65,16 @@ tasks.withType<Test> {
 	)
 }
 project.tasks {
-	val sourceSets = project.the<JavaPluginConvention>().sourceSets
 	val copyLoggingResources = register<Copy>("copyLoggingResources") {
 		from(rootProject.file("config/log4j2.xml"))
-		into(sourceSets["main"].resources.srcDirs.first())
+		into(java.sourceSets["main"].resources.srcDirs.first())
 	}
 	"processResources" {
 		dependsOn(copyLoggingResources)
 	}
 	val copyLoggingTestResources = register<Copy>("copyLoggingTestResources") {
 		from(rootProject.file("config/log4j2.xml"))
-		into(sourceSets["test"].resources.srcDirs.first())
+		into(java.sourceSets["test"].resources.srcDirs.first())
 	}
 	"processTestResources"{
 		dependsOn(copyLoggingTestResources)
