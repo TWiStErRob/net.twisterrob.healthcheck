@@ -17,7 +17,7 @@ dependencies {
 	implementation("commons-io:commons-io:2.11.0")
 	implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 
-	implementation("org.apache.logging.log4j:log4j-iostreams:2.17.2")
+	implementation("org.apache.logging.log4j:log4j-iostreams:2.18.0")
 	implementation("org.assertj:assertj-core:3.23.1")
 
 	val junitVersion = "5.8.2"
