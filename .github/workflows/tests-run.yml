@@ -55,7 +55,7 @@ jobs:
 
       - name: Publish "Results / ${{ inputs.name }}".
         if: success() || failure()
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v2
         with:
           check_name: Results / ${{ inputs.name }}
           comment_mode: off
