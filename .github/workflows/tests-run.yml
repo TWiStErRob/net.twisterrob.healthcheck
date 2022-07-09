@@ -61,4 +61,4 @@ jobs:
           comment_mode: off
           report_individual_runs: true
           test_changes_limit: 0
-          files: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
+          junit_files: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
