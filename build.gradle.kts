@@ -20,12 +20,12 @@ dependencies {
 	implementation("org.apache.logging.log4j:log4j-iostreams:2.18.0")
 	implementation("org.assertj:assertj-core:3.23.1")
 
-	val junitVersion = "5.8.2"
+	val junitVersion = "5.9.0"
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
 
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-	testRuntimeOnly("org.junit.platform:junit-platform-console:1.8.2")
+	testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.0")
 	testRuntimeOnly("org.slf4j:jul-to-slf4j:1.7.36")
 	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.18.0")
 }
