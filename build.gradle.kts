@@ -11,7 +11,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.seleniumhq.selenium:selenium-java:4.3.0")
-	implementation("io.github.bonigarcia:webdrivermanager:5.2.2")
+	implementation("io.github.bonigarcia:webdrivermanager:5.2.3")
 	// TODEL when upgrading webdrivermanager Listed because they have vulnerabilities.
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
 	implementation("commons-io:commons-io:2.11.0")
