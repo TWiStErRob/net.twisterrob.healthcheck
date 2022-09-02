@@ -4,6 +4,7 @@ plugins {
 
 repositories {
 	mavenCentral()
+	maven("Apache SNAPSHOT") { setUrl("https://repository.apache.org/snapshots") }
 }
 
 dependencies {
@@ -27,7 +28,7 @@ dependencies {
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 	testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.0")
 	testRuntimeOnly("org.slf4j:jul-to-slf4j:2.0.0")
-	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.18.0")
+	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j20-impl:2.18.1-SNAPSHOT")
 }
 
 val javaVersion = JavaVersion.VERSION_1_8
