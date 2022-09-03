@@ -13,7 +13,7 @@ dependencies {
 	implementation("org.seleniumhq.selenium:selenium-java:4.4.0")
 	implementation("io.github.bonigarcia:webdrivermanager:5.3.0")
 	// TODEL when upgrading webdrivermanager Listed because they have vulnerabilities.
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.4")
 	implementation("commons-io:commons-io:2.11.0")
 	implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 
