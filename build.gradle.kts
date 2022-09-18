@@ -17,7 +17,7 @@ dependencies {
 	implementation("commons-io:commons-io:2.11.0")
 	implementation("org.bouncycastle:bcprov-jdk15on:1.70")
 
-	implementation("org.apache.logging.log4j:log4j-iostreams:2.18.0")
+	implementation("org.apache.logging.log4j:log4j-iostreams:2.19.0")
 	implementation("org.assertj:assertj-core:3.23.1")
 
 	val junitVersion = "5.9.0"
@@ -27,7 +27,7 @@ dependencies {
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 	testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.0")
 	testRuntimeOnly("org.slf4j:jul-to-slf4j:1.7.36")
-	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.18.0")
+	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.19.0")
 }
 
 val javaVersion = JavaVersion.VERSION_1_8
