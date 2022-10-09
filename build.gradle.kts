@@ -1,69 +1,52 @@
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.7.20"
-}
-
-repositories {
-	mavenCentral()
+	@Suppress("DSL_SCOPE_VIOLATION")
+	alias(libs.plugins.kotlin)
 }
 
 dependencies {
-	implementation("org.jetbrains.kotlin:kotlin-stdlib")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.seleniumhq.selenium:selenium-java:4.5.0")
-	implementation("io.github.bonigarcia:webdrivermanager:5.3.0")
-	// TODEL when upgrading webdrivermanager Listed because they have vulnerabilities.
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.4")
-	implementation("commons-io:commons-io:2.11.0")
-	implementation("org.bouncycastle:bcprov-jdk15on:1.70")
+	implementation(libs.kotlin.stdlib8)
+	implementation(libs.kotlin.reflect)
 
-	val log4jVersion = "2.19.0"
-	implementation("org.apache.logging.log4j:log4j-iostreams:$log4jVersion")
-	implementation("org.assertj:assertj-core:3.23.1")
+	implementation(libs.selenium)
+	implementation(libs.webdrivermanager)
 
-	val junitVersion = "5.9.1"
-	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-	testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
+	implementation(libs.log4j.iostreams)
+	implementation(libs.assertj)
 
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-	testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.1")
-	testRuntimeOnly("org.slf4j:jul-to-slf4j:2.0.3")
-	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j2-impl:$log4jVersion")
-	testRuntimeOnly("org.apache.logging.log4j:log4j-core:$log4jVersion")
+	testImplementation(libs.junit.api)
+	testImplementation(libs.junit.params)
+	testRuntimeOnly(libs.junit.engine)
+
+	testRuntimeOnly(libs.log4j)
+	testRuntimeOnly(libs.log4j.slf4j)
+	testRuntimeOnly(libs.slf4j.jul)
 }
 
-val javaVersion = JavaVersion.VERSION_1_8
-
-java {
-	sourceCompatibility = javaVersion
-	targetCompatibility = javaVersion
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
 	kotlinOptions {
 		verbose = true
-		jvmTarget = javaVersion.toString()
+		jvmTarget = libs.versions.java.get()
 		allWarningsAsErrors = true
 	}
 }
 
 // Configure JUnit 5
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	useJUnitPlatform {
 	}
 }
 
 // Configure Console logging
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	testLogging {
 		events("passed", "skipped", "failed")
 	}
 }
 
 // Configure logging
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	jvmArgs(
-		"-Djava.util.logging.config.file=${rootProject.file("config/logging.properties")}"
+		"-Djava.util.logging.config.file=${rootProject.file("config/jul.properties")}"
 	)
 }
 project.tasks {
@@ -78,13 +61,13 @@ project.tasks {
 		from(rootProject.file("config/log4j2.xml"))
 		into(java.sourceSets["test"].resources.srcDirs.first())
 	}
-	"processTestResources"{
+	"processTestResources" {
 		dependsOn(copyLoggingTestResources)
 	}
 }
 
 // Configure global test parameters.
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	val propertyNamesToExposeToJUnitTests = listOf(
 		"net.twisterrob.test.selenium.headless"
 	)
