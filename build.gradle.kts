@@ -30,17 +30,15 @@ dependencies {
 	testRuntimeOnly(libs.slf4j.jul)
 }
 
-val javaVersion = JavaVersion.VERSION_1_8
-
 java {
-	sourceCompatibility = javaVersion
-	targetCompatibility = javaVersion
+	sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
+	targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 	kotlinOptions {
 		verbose = true
-		jvmTarget = javaVersion.toString()
+		jvmTarget = libs.versions.java.get()
 		allWarningsAsErrors = true
 	}
 }

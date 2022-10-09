@@ -1,4 +1,5 @@
 [versions]
+java = "1.8"
 kotlin = "1.7.20"
 
 selenium = "4.5.0"
