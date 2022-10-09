@@ -1,5 +1,6 @@
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.7.20"
+	@Suppress("DSL_SCOPE_VIOLATION")
+	alias(libs.plugins.kotlin)
 }
 
 repositories {
@@ -7,29 +8,26 @@ repositories {
 }
 
 dependencies {
-	implementation("org.jetbrains.kotlin:kotlin-stdlib")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.seleniumhq.selenium:selenium-java:4.5.0")
-	implementation("io.github.bonigarcia:webdrivermanager:5.3.0")
+	implementation(libs.kotlin.stdlib8)
+	implementation(libs.kotlin.reflect)
+
+	implementation(libs.selenium)
+	implementation(libs.webdrivermanager)
 	// TODEL when upgrading webdrivermanager Listed because they have vulnerabilities.
-	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.4")
-	implementation("commons-io:commons-io:2.11.0")
-	implementation("org.bouncycastle:bcprov-jdk15on:1.70")
+	implementation(libs.jackson.databind)
+	implementation(libs.commons.io)
+	implementation(libs.bouncycastle.jdk15)
 
-	val log4jVersion = "2.19.0"
-	implementation("org.apache.logging.log4j:log4j-iostreams:$log4jVersion")
-	implementation("org.assertj:assertj-core:3.23.1")
+	implementation(libs.log4j.iostreams)
+	implementation(libs.assertj)
 
-	val junitVersion = "5.9.1"
-	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-	testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
+	testImplementation(libs.junit.api)
+	testImplementation(libs.junit.params)
 
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-	testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.1")
-	testRuntimeOnly("org.slf4j:jul-to-slf4j:2.0.3")
-	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j2-impl:$log4jVersion")
-	testRuntimeOnly("org.apache.logging.log4j:log4j-core:$log4jVersion")
+	testRuntimeOnly(libs.junit.engine)
+	testRuntimeOnly(libs.log4j)
+	testRuntimeOnly(libs.log4j.slf4j)
+	testRuntimeOnly(libs.slf4j.jul)
 }
 
 val javaVersion = JavaVersion.VERSION_1_8
