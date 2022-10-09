@@ -9,10 +9,6 @@ dependencies {
 
 	implementation(libs.selenium)
 	implementation(libs.webdrivermanager)
-	// TODEL when upgrading webdrivermanager Listed because they have vulnerabilities.
-	implementation(libs.jackson.databind)
-	implementation(libs.commons.io)
-	implementation(libs.bouncycastle.jdk15)
 
 	implementation(libs.log4j.iostreams)
 	implementation(libs.assertj)
