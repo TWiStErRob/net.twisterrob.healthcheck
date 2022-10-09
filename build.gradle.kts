@@ -15,16 +15,11 @@ dependencies {
 
 	testImplementation(libs.junit.api)
 	testImplementation(libs.junit.params)
-
 	testRuntimeOnly(libs.junit.engine)
+
 	testRuntimeOnly(libs.log4j)
 	testRuntimeOnly(libs.log4j.slf4j)
 	testRuntimeOnly(libs.slf4j.jul)
-}
-
-java {
-	sourceCompatibility = JavaVersion.toVersion(libs.versions.java.get())
-	targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
@@ -51,7 +46,7 @@ tasks.withType<Test>().configureEach {
 // Configure logging
 tasks.withType<Test>().configureEach {
 	jvmArgs(
-		"-Djava.util.logging.config.file=${rootProject.file("config/logging.properties")}"
+		"-Djava.util.logging.config.file=${rootProject.file("config/jul.properties")}"
 	)
 }
 project.tasks {

@@ -15,17 +15,19 @@ assertj = "3.23.1"
 kotlin-pom = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlin-stdlib8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+
 selenium = { module = "org.seleniumhq.selenium:selenium-java", version.ref = "selenium" }
 webdrivermanager = { module = "io.github.bonigarcia:webdrivermanager", version.ref = "webdrivermanager" }
-
-log4j-iostreams = { module = "org.apache.logging.log4j:log4j-iostreams", version.ref = "log4j" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
 junit-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
 junit-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+
 log4j = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
 log4j-slf4j = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4j" }
+log4j-iostreams = { module = "org.apache.logging.log4j:log4j-iostreams", version.ref = "log4j" }
+
 slf4j-jul = { module = "org.slf4j:jul-to-slf4j", version.ref = "slf4j" }
 
 [bundles]
