@@ -31,7 +31,7 @@ java {
 	targetCompatibility = JavaVersion.toVersion(libs.versions.java.get())
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
 	kotlinOptions {
 		verbose = true
 		jvmTarget = libs.versions.java.get()
@@ -40,20 +40,20 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 // Configure JUnit 5
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	useJUnitPlatform {
 	}
 }
 
 // Configure Console logging
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	testLogging {
 		events("passed", "skipped", "failed")
 	}
 }
 
 // Configure logging
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	jvmArgs(
 		"-Djava.util.logging.config.file=${rootProject.file("config/logging.properties")}"
 	)
@@ -76,7 +76,7 @@ project.tasks {
 }
 
 // Configure global test parameters.
-tasks.withType<Test> {
+tasks.withType<Test>().configureEach {
 	val propertyNamesToExposeToJUnitTests = listOf(
 		"net.twisterrob.test.selenium.headless"
 	)
