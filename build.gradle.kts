@@ -1,5 +1,5 @@
 plugins {
-	id("org.jetbrains.kotlin.jvm") version "1.7.10"
+	id("org.jetbrains.kotlin.jvm") version "1.7.20"
 }
 
 repositories {
@@ -10,7 +10,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.seleniumhq.selenium:selenium-java:4.4.0")
+	implementation("org.seleniumhq.selenium:selenium-java:4.5.0")
 	implementation("io.github.bonigarcia:webdrivermanager:5.3.0")
 	// TODEL when upgrading webdrivermanager Listed because they have vulnerabilities.
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.4")
@@ -20,12 +20,12 @@ dependencies {
 	implementation("org.apache.logging.log4j:log4j-iostreams:2.19.0")
 	implementation("org.assertj:assertj-core:3.23.1")
 
-	val junitVersion = "5.9.0"
+	val junitVersion = "5.9.1"
 	testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
 	testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
 
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-	testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.0")
+	testRuntimeOnly("org.junit.platform:junit-platform-console:1.9.1")
 	testRuntimeOnly("org.slf4j:jul-to-slf4j:2.0.3")
 	testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j2-impl:2.19.0")
 }
