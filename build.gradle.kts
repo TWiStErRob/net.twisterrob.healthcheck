@@ -3,10 +3,6 @@ plugins {
 	alias(libs.plugins.kotlin)
 }
 
-repositories {
-	mavenCentral()
-}
-
 dependencies {
 	implementation(libs.kotlin.stdlib8)
 	implementation(libs.kotlin.reflect)
