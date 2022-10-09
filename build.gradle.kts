@@ -70,7 +70,7 @@ project.tasks {
 		from(rootProject.file("config/log4j2.xml"))
 		into(java.sourceSets["test"].resources.srcDirs.first())
 	}
-	"processTestResources"{
+	"processTestResources" {
 		dependsOn(copyLoggingTestResources)
 	}
 }
