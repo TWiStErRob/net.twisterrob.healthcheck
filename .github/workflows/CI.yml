@@ -17,6 +17,9 @@ jobs:
       - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
         uses: actions/checkout@v3
 
+      - name: Validate Gradle Wrapper JARs.
+        uses: gradle/wrapper-validation-action@v1
+
       - name: Build
         run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses
 
