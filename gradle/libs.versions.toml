@@ -2,7 +2,7 @@
 java = "1.8"
 kotlin = "1.7.20"
 
-selenium = "4.5.3"
+selenium = "4.6.0"
 webdrivermanager = "5.3.1"
 
 slf4j = "2.0.3"
