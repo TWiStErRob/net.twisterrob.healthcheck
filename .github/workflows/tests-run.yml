@@ -42,21 +42,21 @@ jobs:
           ${{ inputs.test-task }} --tests "${{ inputs.test-pattern }}"
           -Pnet.twisterrob.test.selenium.headless=true
 
-      - name: Upload "Test ${{ inputs.name }} Results XMLs".
+      - name: Upload "Test ${{ inputs.name }} Results XMLs" artifact.
         if: success() || failure()
         uses: actions/upload-artifact@v3
         with:
           name: Test ${{ inputs.name }} Results XMLs
           path: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
 
-      - name: Upload "Test ${{ inputs.name }} Results HTML".
+      - name: Upload "Test ${{ inputs.name }} Results HTML" artifact.
         if: success() || failure()
         uses: actions/upload-artifact@v3
         with:
           name: Test ${{ inputs.name }} Results HTML
           path: ${{ github.workspace }}/build/reports/tests/*/
 
-      - name: Publish "Results / ${{ inputs.name }}".
+      - name: Publish "Results / ${{ inputs.name }}" check suite.
         if: success() || failure()
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
