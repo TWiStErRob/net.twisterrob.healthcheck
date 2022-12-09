@@ -23,7 +23,6 @@ class PlannerPageTest {
 
 	@SmokeTest
 	@Tags(Tag(content))
-	@Disabled("Cineworld syndication data source is dead")
 	@Test fun `Cineworld planner loads some data`(driver: WebDriver) {
 		val page = PlannerPage(driver)
 
