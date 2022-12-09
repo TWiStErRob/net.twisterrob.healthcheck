@@ -16,12 +16,12 @@ class IndexPage(
 
 	override fun open() {
 		check(!::heading.isInitialized) { "Already initialized" }
-		driver.get("http://cinema.twisterrob.net/")
+		driver.get("https://cinema.twisterrob.net/")
 		driver.initElements(this)
 	}
 
 	override fun assertOpened() {
-		assertThat(driver.currentUrl).isEqualTo("http://cinema.twisterrob.net/")
+		assertThat(driver.currentUrl).isEqualTo("https://cinema.twisterrob.net/")
 		assertThat(heading.text).isEqualTo("Cineworld Server API")
 	}
 }
