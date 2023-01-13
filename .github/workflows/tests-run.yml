@@ -20,7 +20,7 @@ jobs:
   all-test:
     name: '${{ inputs.name }}'
     # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
