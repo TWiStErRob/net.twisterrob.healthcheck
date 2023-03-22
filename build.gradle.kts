@@ -31,54 +31,57 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 	}
 }
 
-// Configure JUnit 5
-tasks.withType<Test>().configureEach {
-	useJUnitPlatform {
+registerCopyLoggingFor(java.sourceSets["main"])
+
+@Suppress("UnstableApiUsage")
+testing.suites {
+	withType<JvmTestSuite>().configureEach {
+		registerCopyLoggingFor(sources)
+		useJUnitJupiter(libs.versions.junit)
+		targets.configureEach {
+			testTask.configure {
+				// Enable console logging.
+				testLogging { events("passed", "skipped", "failed") }
+				// Logging configuration.
+				jvmArgs("-Djava.util.logging.config.file=${rootProject.file("config/jul.properties")}")
+				exposePropertiesToTest(
+					"net.twisterrob.test.selenium.headless"
+				)
+			}
+		}
+	}
+	val test by existing(JvmTestSuite::class) {
+		testType.set(TestSuiteType.INTEGRATION_TEST)
+	}
+	register<JvmTestSuite>("smokeTest") {
+		testType.set("smoke-test")
+		targets.configureEach {
+			testTask.configure {
+				options {
+					this as JUnitPlatformOptions
+					includeTags("smoke")
+				}
+				// Share classpath with test, don't use own.
+				testClassesDirs = files(test.map { it.sources.output.classesDirs })
+				classpath = files(test.map { it.sources.runtimeClasspath })
+			}
+		}
 	}
 }
 
-// Configure Console logging
-tasks.withType<Test>().configureEach {
-	testLogging {
-		events("passed", "skipped", "failed")
-	}
-}
-
-// Configure logging
-tasks.withType<Test>().configureEach {
-	jvmArgs(
-		"-Djava.util.logging.config.file=${rootProject.file("config/jul.properties")}"
-	)
-}
-project.tasks {
-	val copyLoggingResources = register<Copy>("copyLoggingResources") {
-		from(rootProject.file("config/log4j2.xml"))
-		into(java.sourceSets["main"].resources.srcDirs.first())
-	}
-	"processResources" {
-		dependsOn(copyLoggingResources)
-	}
-	val copyLoggingTestResources = register<Copy>("copyLoggingTestResources") {
-		from(rootProject.file("config/log4j2.xml"))
-		into(java.sourceSets["test"].resources.srcDirs.first())
-	}
-	"processTestResources" {
-		dependsOn(copyLoggingTestResources)
-	}
-}
-
-// Configure global test parameters.
-tasks.withType<Test>().configureEach {
-	val propertyNamesToExposeToJUnitTests = listOf(
-		"net.twisterrob.test.selenium.headless"
-	)
-	val properties = propertyNamesToExposeToJUnitTests.associateWith { project.findProperty(it) }
+fun Test.exposePropertiesToTest(vararg propertyNames: String) {
+	val properties = propertyNames.associateWith { project.findProperty(it) }
 	properties.forEach { (name, value) -> inputs.property(name, value) }
 	properties.forEach { (name, value) -> value?.let { jvmArgs("-D${name}=${value}") } }
 }
 
-tasks.register<Test>("smokeTest") {
-	useJUnitPlatform {
-		includeTags("smoke")
+fun Project.registerCopyLoggingFor(sourceSet: SourceSet) {
+	val copy = tasks.register<Copy>(sourceSet.getTaskName("copyLogging", "resources")) {
+		from(project.rootProject.file("config/log4j2.xml"))
+		into(sourceSet.resources.srcDirs.first())
+	}
+
+	tasks.named(sourceSet.processResourcesTaskName) {
+		dependsOn(copy)
 	}
 }

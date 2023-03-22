@@ -7,5 +7,6 @@
 /node_modules
 
 # Logging configurations
-/**/src/main/resources/log4j2.xml
-/**/src/test/resources/log4j2.xml
+/src/main/resources/log4j2.xml
+/src/test/resources/log4j2.xml
+/src/smokeTest/resources/log4j2.xml
