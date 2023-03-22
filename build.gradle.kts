@@ -52,14 +52,6 @@ testing.suites {
 	}
 	val test by existing(JvmTestSuite::class) {
 		testType.set(TestSuiteType.INTEGRATION_TEST)
-		targets.configureEach {
-			testTask.configure {
-				options {
-					this as JUnitPlatformOptions
-					includeTags("smoke")
-				}
-			}
-		}
 	}
 	register<JvmTestSuite>("smokeTest") {
 		testType.set("smoke-test")
