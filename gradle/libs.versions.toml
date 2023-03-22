@@ -5,7 +5,7 @@ kotlin = "1.8.10"
 selenium = "4.8.1"
 webdrivermanager = "5.3.2"
 
-slf4j = "2.0.6"
+slf4j = "2.0.7"
 log4j = "2.20.0"
 
 junit = "5.9.2"
@@ -17,6 +17,7 @@ kotlin-stdlib8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.r
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 selenium = { module = "org.seleniumhq.selenium:selenium-java", version.ref = "selenium" }
+selenium-jdkHttp = { module = "org.seleniumhq.selenium:selenium-http-jdk-client", version.ref = "selenium" }
 webdrivermanager = { module = "io.github.bonigarcia:webdrivermanager", version.ref = "webdrivermanager" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
