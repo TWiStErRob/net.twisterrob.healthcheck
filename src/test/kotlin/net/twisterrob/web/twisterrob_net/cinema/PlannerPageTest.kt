@@ -5,7 +5,6 @@ import net.twisterrob.web.test.WebDriverExtension
 import net.twisterrob.web.test.openTest
 import net.twisterrob.web.test.tags.content
 import net.twisterrob.web.test.tags.justOpen
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Order
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Tags
