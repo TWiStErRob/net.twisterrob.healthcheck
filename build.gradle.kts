@@ -37,6 +37,7 @@ registerCopyLoggingFor(java.sourceSets["main"])
 testing.suites {
 	withType<JvmTestSuite>().configureEach {
 		registerCopyLoggingFor(sources)
+		useJUnitJupiter(libs.versions.junit)
 		targets.configureEach {
 			testTask.configure {
 				// Enable console logging.
@@ -51,7 +52,6 @@ testing.suites {
 	}
 	val test by existing(JvmTestSuite::class) {
 		testType.set(TestSuiteType.INTEGRATION_TEST)
-		useJUnitJupiter(libs.versions.junit)
 		targets.configureEach {
 			testTask.configure {
 				options {
@@ -63,7 +63,6 @@ testing.suites {
 	}
 	register<JvmTestSuite>("smokeTest") {
 		testType.set("smoke-test")
-		useJUnitJupiter(libs.versions.junit)
 		targets.configureEach {
 			testTask.configure {
 				options {
