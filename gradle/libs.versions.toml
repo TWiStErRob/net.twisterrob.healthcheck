@@ -1,6 +1,6 @@
 [versions]
 java = "11"
-kotlin = "1.8.10"
+kotlin = "1.8.20"
 
 selenium = "4.8.3"
 webdrivermanager = "5.3.2"
