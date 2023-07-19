@@ -1,4 +1,4 @@
-name: CI
+name: "CI"
 
 on:
   push
@@ -11,21 +11,21 @@ concurrency:
 jobs:
 
   build:
-    name: 'Build'
+    name: "Build"
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
+      - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
         uses: actions/checkout@v3
 
-      - name: Validate Gradle Wrapper JARs.
+      - name: "Validate Gradle Wrapper JARs."
         uses: gradle/wrapper-validation-action@v1
 
-      - name: Build
-        run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses
+      - name: "Build without testing"
+        run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses build -x test -x smokeTest
 
   test-all:
-    name: 'Tests'
+    name: "Tests"
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'All'
@@ -33,7 +33,7 @@ jobs:
       test-pattern: '*'
 
   test-smoke:
-    name: 'Tests'
+    name: "Tests"
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'Smoke'
