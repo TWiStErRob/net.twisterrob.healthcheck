@@ -29,7 +29,7 @@ kotlin {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-	kotlinOptions {
+	compilerOptions {
 		verbose = true
 		allWarningsAsErrors = true
 	}
