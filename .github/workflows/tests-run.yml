@@ -45,6 +45,7 @@ jobs:
           --stacktrace
           ${{ inputs.test-task }} --tests "${{ inputs.test-pattern }}"
           -Pnet.twisterrob.test.selenium.headless=true
+          -Pwdm.chromeDriverVersion=114.0.5735.133
 
       - name: Upload "Test ${{ inputs.name }} Results XMLs" artifact.
         if: success() || failure()
