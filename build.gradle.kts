@@ -8,7 +8,6 @@ dependencies {
 
 	implementation(libs.selenium)
 	implementation(libs.selenium.jdkHttp)
-	implementation(libs.webdrivermanager)
 
 	implementation(libs.log4j.iostreams)
 	implementation(libs.assertj)
@@ -48,12 +47,12 @@ testing.suites {
 				// Share CI parameters with test.
 				exposePropertiesToTest(
 					"net.twisterrob.test.selenium.headless",
-					"wdm.chromeDriverVersion",
 				)
-				// Relocate WebDriverManager cache from ~/.cache/selenium to build directory.
-				val wdmCache = rootProject.layout.buildDirectory.dir("webdrivermanager-cache")
-				outputs.dir(wdmCache).withPropertyName("wdm.cachePath")
-				systemProperty("wdm.cachePath", wdmCache.get().asFile)
+				// Relocate Selenium Manager cache from ~/.cache/selenium to build directory.
+				// TODO currently in 4.10.0, it seems broken: https://github.com/SeleniumHQ/selenium/issues/12383
+				val driverCache = rootProject.layout.buildDirectory.dir("seleniummanager-cache")
+				outputs.dir(driverCache).withPropertyName("SE_CACHE_PATH")
+				environment("SE_CACHE_PATH", driverCache.get().asFile)
 			}
 		}
 	}
