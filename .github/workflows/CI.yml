@@ -21,6 +21,12 @@ jobs:
       - name: "Validate Gradle Wrapper JARs."
         uses: gradle/wrapper-validation-action@v1
 
+      - name: "Set up JDK 17."
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: zulu
+
       - name: "Build without testing"
         run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses build -x test -x smokeTest
 
