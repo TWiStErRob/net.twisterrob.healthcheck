@@ -22,7 +22,6 @@ on:
 jobs:
   all-test:
     name: '${{ inputs.name }}'
-    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
