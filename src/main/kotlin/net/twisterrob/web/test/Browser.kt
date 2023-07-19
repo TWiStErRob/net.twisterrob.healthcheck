@@ -12,7 +12,9 @@ import java.time.Duration
 object Browser {
 
 	init {
-		WebDriverManager.chromedriver().setup()
+		WebDriverManager.chromedriver()
+			.avoidResolutionCache()
+			.setup()
 	}
 
 	fun createDriver(): WebDriver {
