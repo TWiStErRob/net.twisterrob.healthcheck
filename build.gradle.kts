@@ -22,17 +22,8 @@ dependencies {
 	testRuntimeOnly(libs.slf4j.jul)
 }
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
-	}
-}
-
-kotlin {
-	jvmToolchain {
-		languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
-	}
-}
+java.toolchain.languageVersion.set(libs.versions.java.map(JavaLanguageVersion::of))
+kotlin.jvmToolchain { languageVersion.set(libs.versions.java.map(JavaLanguageVersion::of)) }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
 	compilerOptions {
