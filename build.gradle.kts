@@ -43,12 +43,14 @@ testing.suites {
 				testLogging { events("passed", "skipped", "failed") }
 				// Logging configuration.
 				jvmArgs("-Djava.util.logging.config.file=${rootProject.file("config/jul.properties")}")
-				val wdmCache = rootProject.layout.buildDirectory.dir("webdrivermanager-cache")
-				outputs.dir(wdmCache).withPropertyName("wdm.cachePath")
-				systemProperty("wdm.cachePath", wdmCache.get().asFile)
+				// Share CI parameters with test.
 				exposePropertiesToTest(
 					"net.twisterrob.test.selenium.headless"
 				)
+				// Relocate WebDriverManager cache from ~/.cache/selenium to build directory.
+				val wdmCache = rootProject.layout.buildDirectory.dir("webdrivermanager-cache")
+				outputs.dir(wdmCache).withPropertyName("wdm.cachePath")
+				systemProperty("wdm.cachePath", wdmCache.get().asFile)
 			}
 		}
 	}
