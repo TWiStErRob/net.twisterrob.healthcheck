@@ -22,10 +22,15 @@ dependencies {
 	testRuntimeOnly(libs.slf4j.jul)
 }
 
+kotlin {
+	jvmToolchain {
+		languageVersion = JavaLanguageVersion.of(libs.versions.java.get())
+	}
+}
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
 	kotlinOptions {
 		verbose = true
-		jvmTarget = libs.versions.java.get()
 		allWarningsAsErrors = true
 	}
 }
