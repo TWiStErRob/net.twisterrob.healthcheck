@@ -43,8 +43,8 @@
 		<Logger name="net.twisterrob" level="ALL" />
 
 		<Logger name="org.junit" level="WARN" />
-		<Logger name="org.openqa.selenium" level="INFO" />
-		<Logger name="io.github.bonigarcia" level="INFO" />
+		<Logger name="org.openqa.selenium" level="ALL" />
+		<Logger name="io.github.bonigarcia" level="ALL" />
 
 		<Logger name="javax.management" level="INFO" />
 		<Logger name="io.netty" level="INFO" />
