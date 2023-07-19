@@ -10,18 +10,19 @@ import org.openqa.selenium.WebDriver
 class WebDriverExtension : BeforeEachCallback, AfterEachCallback, ParameterResolver {
 
 	override fun beforeEach(context: ExtensionContext) {
-		context.store.put(KEY, Browser.createDriver())
+		context.store.webDriver = Browser.createDriver()
 	}
 
 	override fun afterEach(context: ExtensionContext) {
-		context.store.remove(KEY, WebDriver::class.java).quit()
+		// In case Browser / Browser.createDriver() fails to initialize, there'll be no driver to quit.
+		context.store.clearWebDriver()?.quit()
 	}
 
 	override fun supportsParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): Boolean =
-		parameterContext.parameter.type == WebDriver::class.java
+		parameterContext.parameter.type == WEB_DRIVER_VALUE_TYPE
 
 	override fun resolveParameter(parameterContext: ParameterContext, extensionContext: ExtensionContext): Any? =
-		extensionContext.store.get(KEY, WebDriver::class.java)
+		extensionContext.store.webDriver
 
 	companion object {
 
@@ -30,6 +31,14 @@ class WebDriverExtension : BeforeEachCallback, AfterEachCallback, ParameterResol
 
 		private val NAMESPACE = ExtensionContext.Namespace.create(WebDriverExtension::class.qualifiedName)
 
-		private val KEY: Any = WebDriver::class
+		private val WEB_DRIVER_KEY: Any = WebDriver::class
+		private val WEB_DRIVER_VALUE_TYPE: Class<WebDriver> = WebDriver::class.java
+
+		private var ExtensionContext.Store.webDriver: WebDriver?
+			get() = this.get(WEB_DRIVER_KEY, WEB_DRIVER_VALUE_TYPE)
+			set(value) = this.put(WEB_DRIVER_KEY, value)
+
+		private fun ExtensionContext.Store.clearWebDriver(): WebDriver? =
+			this.remove(WEB_DRIVER_KEY, WEB_DRIVER_VALUE_TYPE)
 	}
 }

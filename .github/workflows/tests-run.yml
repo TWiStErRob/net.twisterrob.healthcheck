@@ -1,15 +1,18 @@
 on:
+
   workflow_call:
     inputs:
       name:
         description: 'Display name and artifact name'
         required: true
         type: string
+
       test-task:
         description: 'Gradle test task(s) to run'
         required: true
         type: string
         default: ':test'
+
       test-pattern:
         description: 'https://docs.gradle.org/current/userguide/java_testing.html#test_filtering'
         required: true
@@ -19,10 +22,11 @@ on:
 jobs:
   all-test:
     name: '${{ inputs.name }}'
-    # https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
     steps:
+
       - name: Checkout ${{ github.ref }} branch in ${{ github.repository }} repository.
         uses: actions/checkout@v3
 
