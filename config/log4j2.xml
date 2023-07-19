@@ -44,6 +44,8 @@
 
 		<Logger name="org.junit" level="WARN" />
 		<Logger name="org.openqa.selenium" level="ALL" />
+		<!-- Disable RemoteWebDriver logs: Forwarding <methodName> on session <hash> to remote -->
+		<Logger name="org.openqa.selenium.remote" level="INFO" />
 		<Logger name="io.github.bonigarcia" level="ALL" />
 
 		<Logger name="javax.management" level="INFO" />
@@ -51,6 +53,12 @@
 		<Logger name="org.asynchttpclient" level="INFO" />
 		<Logger name="org.apache.hc.client5" level="INFO" />
 		<Logger name="sun.net.www.protocol.http" level="INFO" />
+		<!-- Disable X509Certificate: Alg:... lines -->
+		<Logger name="jdk.event.security" level="INFO" />
+		<!-- Disable low-level HTTP Http2ClientImpl, Http1AsyncReceiver, Http1Response, Http1Exchange, Http1Publisher, SocketTube, etc. logs -->
+		<Logger name="jdk.internal.httpclient.debug" level="INFO" />
+		<!-- Disable low-level HTTP WebSocket, Transport, Output, etc. logs -->
+		<Logger name="jdk.internal.httpclient.websocket.debug" level="INFO" />
 
 	</Loggers>
 
