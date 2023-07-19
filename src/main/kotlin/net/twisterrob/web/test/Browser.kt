@@ -1,6 +1,5 @@
 package net.twisterrob.web.test
 
-import io.github.bonigarcia.wdm.WebDriverManager
 import org.apache.logging.log4j.io.IoBuilder
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
@@ -11,11 +10,7 @@ import java.time.Duration
 
 object Browser {
 
-	init {
-		WebDriverManager.chromedriver()
-			//.avoidResolutionCache()
-			.setup()
-	}
+	// Automatically will use https://www.selenium.dev/documentation/selenium_manager/.
 
 	fun createDriver(): WebDriver {
 		val options = ChromeOptions().apply {
