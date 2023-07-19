@@ -1,4 +1,4 @@
-name: 'Scheduled'
+name: "Scheduled"
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 jobs:
 
   test-cinema:
-    name: 'Tests'
+    name: "Tests"
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'cinema.twisterrob.net'
@@ -18,7 +18,7 @@ jobs:
       test-pattern: 'net.twisterrob.web.twisterrob_net.cinema.*'
 
   test-regex:
-    name: 'Tests'
+    name: "Tests"
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'regex.twisterrob.net'
@@ -26,7 +26,7 @@ jobs:
       test-pattern: 'net.twisterrob.web.twisterrob_net.regex.*'
 
   test-web:
-    name: 'Tests'
+    name: "Tests"
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'www.twisterrob.net'
@@ -34,7 +34,7 @@ jobs:
       test-pattern: 'net.twisterrob.web.twisterrob_net.www.*'
 
   test-uw:
-    name: 'Tests'
+    name: "Tests"
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'twisterrob.uw.hu'

@@ -22,10 +22,12 @@ dependencies {
 	testRuntimeOnly(libs.slf4j.jul)
 }
 
+java.toolchain.languageVersion.set(libs.versions.java.map(JavaLanguageVersion::of))
+kotlin.jvmToolchain { languageVersion.set(libs.versions.java.map(JavaLanguageVersion::of)) }
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-	kotlinOptions {
+	compilerOptions {
 		verbose = true
-		jvmTarget = libs.versions.java.get()
 		allWarningsAsErrors = true
 	}
 }
@@ -43,12 +45,15 @@ testing.suites {
 				testLogging { events("passed", "skipped", "failed") }
 				// Logging configuration.
 				jvmArgs("-Djava.util.logging.config.file=${rootProject.file("config/jul.properties")}")
+				// Share CI parameters with test.
+				exposePropertiesToTest(
+					"net.twisterrob.test.selenium.headless",
+					"wdm.chromeDriverVersion",
+				)
+				// Relocate WebDriverManager cache from ~/.cache/selenium to build directory.
 				val wdmCache = rootProject.layout.buildDirectory.dir("webdrivermanager-cache")
 				outputs.dir(wdmCache).withPropertyName("wdm.cachePath")
 				systemProperty("wdm.cachePath", wdmCache.get().asFile)
-				exposePropertiesToTest(
-					"net.twisterrob.test.selenium.headless"
-				)
 			}
 		}
 	}
@@ -74,7 +79,7 @@ testing.suites {
 fun Test.exposePropertiesToTest(vararg propertyNames: String) {
 	val properties = propertyNames.associateWith { project.findProperty(it) }
 	properties.forEach { (name, value) -> inputs.property(name, value) }
-	properties.forEach { (name, value) -> value?.let { jvmArgs("-D${name}=${value}") } }
+	properties.forEach { (name, value) -> value?.let { systemProperty(name, value) } }
 }
 
 fun Project.registerCopyLoggingFor(sourceSet: SourceSet) {
