@@ -13,7 +13,7 @@ object Browser {
 
 	init {
 		WebDriverManager.chromedriver()
-			.avoidResolutionCache()
+			//.avoidResolutionCache()
 			.setup()
 	}
 

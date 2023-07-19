@@ -43,6 +43,9 @@ testing.suites {
 				testLogging { events("passed", "skipped", "failed") }
 				// Logging configuration.
 				jvmArgs("-Djava.util.logging.config.file=${rootProject.file("config/jul.properties")}")
+				val wdmCache = rootProject.layout.buildDirectory.dir("webdrivermanager-cache")
+				outputs.dir(wdmCache).withPropertyName("wdm.cachePath")
+				systemProperty("wdm.cachePath", wdmCache.get().asFile)
 				exposePropertiesToTest(
 					"net.twisterrob.test.selenium.headless"
 				)
