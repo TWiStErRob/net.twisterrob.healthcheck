@@ -17,6 +17,8 @@ object Browser {
 		val options = ChromeOptions().apply {
 			if (Options.headless) {
 				addArguments("--headless=new")
+				// Implicit via driver.manage() below, it doesn't work with new headless mode.
+				//addArguments("--window-size=1920,1080")
 			}
 		}
 		val service = ChromeDriverService.Builder()
