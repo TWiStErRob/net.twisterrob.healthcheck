@@ -1,6 +1,7 @@
 package net.twisterrob.web.test
 
 import org.apache.logging.log4j.io.IoBuilder
+import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeDriverService
@@ -15,14 +16,7 @@ object Browser {
 	fun createDriver(): WebDriver {
 		val options = ChromeOptions().apply {
 			if (Options.headless) {
-				addArguments(
-					// https://www.selenium.dev/blog/2023/headless-is-going-away/
-					"--headless=new",
-					// Make sure the window has a size,
-					// because "maximize()" alone is not enough when there's no window system.
-					// Alternative setup: driver.manage().window().size = Dimension(1920, 1080)
-					"--window-size=1920,1080",
-				)
+				addArguments("--headless=new")
 			}
 		}
 		val service = ChromeDriverService.Builder()
@@ -39,7 +33,8 @@ object Browser {
 		val driver = ChromeDriver(service, options)
 		driver.manage().apply {
 			timeouts().implicitlyWait(Duration.ofSeconds(10))
-			window().maximize()
+			// Ensure there's a fixed size, so tests behave the same, this is necessary in headless too.
+			window().size = Dimension(1920, 1080)
 		}
 		return driver
 	}
