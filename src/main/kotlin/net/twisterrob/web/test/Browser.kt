@@ -15,10 +15,14 @@ object Browser {
 	fun createDriver(): WebDriver {
 		val options = ChromeOptions().apply {
 			if (Options.headless) {
-				// Make sure the window has a size,
-				// because "maximize()" alone is not enough when there's no window system.
-				// Alternative setup: driver.manage().window().size = Dimension(1920, 1080)
-				addArguments("--headless", "--window-size=1920,1080")
+				addArguments(
+					// https://www.selenium.dev/blog/2023/headless-is-going-away/
+					"--headless=new",
+					// Make sure the window has a size,
+					// because "maximize()" alone is not enough when there's no window system.
+					// Alternative setup: driver.manage().window().size = Dimension(1920, 1080)
+					"--window-size=1920,1080",
+				)
 			}
 		}
 		val service = ChromeDriverService.Builder()
