@@ -2,7 +2,7 @@
 java = "17"
 kotlin = "1.9.10"
 
-selenium = "4.13.0"
+selenium = "4.14.0"
 
 slf4j = "2.0.9"
 log4j = "2.20.0"
@@ -16,7 +16,6 @@ kotlin-stdlib8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.r
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 selenium = { module = "org.seleniumhq.selenium:selenium-java", version.ref = "selenium" }
-selenium-jdkHttp = { module = "org.seleniumhq.selenium:selenium-http-jdk-client", version.ref = "selenium" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
