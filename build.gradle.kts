@@ -7,7 +7,6 @@ dependencies {
 	implementation(libs.kotlin.reflect)
 
 	implementation(libs.selenium)
-	implementation(libs.selenium.jdkHttp)
 
 	implementation(libs.log4j.iostreams)
 	implementation(libs.assertj)

@@ -16,7 +16,6 @@ kotlin-stdlib8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.r
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 
 selenium = { module = "org.seleniumhq.selenium:selenium-java", version.ref = "selenium" }
-selenium-jdkHttp = { module = "org.seleniumhq.selenium:selenium-http-jdk-client", version.ref = "selenium" }
 assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
 junit-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
