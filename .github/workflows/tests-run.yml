@@ -54,14 +54,14 @@ jobs:
 
       - name: "Upload 'Test ${{ inputs.name }} Results XMLs' artifact."
         if: success() || failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Test ${{ inputs.name }} Results XMLs'
           path: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
 
       - name: "Upload 'Test ${{ inputs.name }} Results HTML' artifact."
         if: success() || failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'Test ${{ inputs.name }} Results HTML'
           path: ${{ github.workspace }}/build/reports/tests/*/
