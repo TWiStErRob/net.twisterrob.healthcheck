@@ -39,12 +39,12 @@ class RegexPage(
 
 	override fun open() {
 		check(!::header.isInitialized) { "Already initialized" }
-		driver.get("http://regex.twisterrob.net/")
+		driver.get("https://regex.twisterrob.net/")
 		driver.initElements(this)
 	}
 
 	override fun assertOpened() {
-		assertThat(driver.currentUrl).startsWith("http://regex.twisterrob.net/")
+		assertThat(driver.currentUrl).startsWith("https://regex.twisterrob.net/")
 		assertThat(driver.title).isEqualTo("Regular Expressions (Regex) Sandbox")
 		assertThat(header).text().isEqualTo("Regular Expressions (Regex) Sandbox")
 	}
