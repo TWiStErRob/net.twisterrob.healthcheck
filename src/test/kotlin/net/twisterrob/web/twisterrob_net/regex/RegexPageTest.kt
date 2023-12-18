@@ -1,8 +1,10 @@
 package net.twisterrob.web.twisterrob_net.regex
 
+import net.twisterrob.selenium.createPage
 import net.twisterrob.web.test.SmokeTest
 import net.twisterrob.web.test.WebDriverExtension
 import net.twisterrob.web.test.openTest
+import net.twisterrob.web.test.tags
 import net.twisterrob.web.test.tags.interaction
 import net.twisterrob.web.test.tags.justOpen
 import org.junit.jupiter.api.Order
@@ -19,6 +21,16 @@ class RegexPageTest {
 	@Order(0)
 	@Tags(Tag(justOpen))
 	@TestFactory fun openTest(driver: WebDriver) = openTest<RegexPage>(driver)
+
+	@Tags(Tag(tags.navigation))
+	@Test fun `redirects and secures from unsecure url`(driver: WebDriver) {
+		@Suppress("HttpUrlsUsage")
+		driver.get("http://regex.twisterrob.net/")
+
+		val page: RegexPage = driver.createPage()
+
+		page.assertOpened()
+	}
 
 	@Tags(Tag(justOpen))
 	@Test fun `preset data is filled in`(driver: WebDriver) {
