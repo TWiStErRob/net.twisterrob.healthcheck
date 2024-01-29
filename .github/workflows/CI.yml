@@ -10,16 +10,19 @@ concurrency:
 
 jobs:
 
+  validate:
+    name: "🦺 Validation"
+    uses: TWiStErRob/github-workflows/.github/workflows/validate.yml@19333c04e57739ec6074b09c6ca09c225c94dc09 # v1
+
   build:
     name: "Build"
+    needs:
+      - validate
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
         uses: actions/checkout@v4
-
-      - name: "Validate Gradle Wrapper JARs."
-        uses: gradle/wrapper-validation-action@v1
 
       - name: "Set up JDK 17."
         uses: actions/setup-java@v4
@@ -30,16 +33,22 @@ jobs:
       - name: "Build without testing"
         run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses build -x test -x smokeTest
 
+
   test-all:
     name: "Tests"
+    needs:
+      - validate
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'All'
       test-task: ':test'
       test-pattern: '*'
 
+
   test-smoke:
     name: "Tests"
+    needs:
+      - validate
     uses: ./.github/workflows/tests-run.yml
     with:
       name: 'Smoke'
