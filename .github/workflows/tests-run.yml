@@ -25,6 +25,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
+    defaults: 
+      run: 
+        shell: bash
+
     steps:
 
       - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
@@ -37,13 +41,11 @@ jobs:
           distribution: zulu
 
       - name: "List dependency versions."
-        shell: bash
         run: |
           ./gradlew --version
           google-chrome --version
 
       - name: "Run ${{ inputs.name }} (${{ inputs.test-pattern }}) Tests."
-        shell: bash
         env:
           TASK: ${{ inputs.test-task }}
           TESTS: ${{ inputs.test-pattern }}
@@ -71,7 +73,7 @@ jobs:
           path: ${{ github.workspace }}/build/reports/tests/*/
 
       - name: "Publish 'Results / ${{ inputs.name }}' check suite."
-        if: success() || failure()
+        if: ${{ success() || failure() }}
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
           check_name: 'Results / ${{ inputs.name }}'
