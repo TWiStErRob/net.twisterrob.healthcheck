@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   schedule:
     # https://crontab.guru/#0_6_*_*_*
-    - cron:  '0 6 * * *'
+    - cron: '0 6 * * *'
 
 jobs:
 
@@ -17,6 +17,11 @@ jobs:
       test-task: ':test'
       test-pattern: 'net.twisterrob.web.twisterrob_net.cinema.*'
 
+    permissions:
+      contents: read
+      checks: write
+
+
   test-regex:
     name: "Tests"
     uses: ./.github/workflows/tests-run.yml
@@ -24,6 +29,11 @@ jobs:
       name: 'regex.twisterrob.net'
       test-task: ':test'
       test-pattern: 'net.twisterrob.web.twisterrob_net.regex.*'
+
+    permissions:
+      contents: read
+      checks: write
+
 
   test-web:
     name: "Tests"
@@ -33,6 +43,11 @@ jobs:
       test-task: ':test'
       test-pattern: 'net.twisterrob.web.twisterrob_net.www.*'
 
+    permissions:
+      contents: read
+      checks: write
+
+
   test-uw:
     name: "Tests"
     uses: ./.github/workflows/tests-run.yml
@@ -40,3 +55,7 @@ jobs:
       name: 'twisterrob.uw.hu'
       test-task: ':test'
       test-pattern: 'net.twisterrob.web.twisterrob_uw_hu.*'
+
+    permissions:
+      contents: read
+      checks: write
