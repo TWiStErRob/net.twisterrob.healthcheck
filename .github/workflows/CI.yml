@@ -13,14 +13,25 @@ jobs:
   validate:
     name: "🦺 Validation"
     uses: TWiStErRob/github-workflows/.github/workflows/validate.yml@94f2ec4f96e146200f801fe7e09310c79cb2d2b3 # v2
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+
 
   build:
     name: "Build"
     needs:
       - validate
-    runs-on: ubuntu-latest
     timeout-minutes: 5
+
+    permissions:
+      # actions/checkout
+      contents: read
+
+    runs-on: ubuntu-latest
     steps:
+
       - name: "Checkout ${{ github.ref }} branch in ${{ github.repository }} repository."
         uses: actions/checkout@v4
 
@@ -46,6 +57,10 @@ jobs:
       test-task: ':test'
       test-pattern: '*'
 
+    permissions:
+      contents: read
+      checks: write
+
 
   test-smoke:
     name: "Tests"
@@ -56,3 +71,7 @@ jobs:
       name: 'Smoke'
       test-task: ':smokeTest'
       test-pattern: '*'
+
+    permissions:
+      contents: read
+      checks: write
