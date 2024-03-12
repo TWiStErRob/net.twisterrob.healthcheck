@@ -37,30 +37,37 @@ jobs:
           distribution: zulu
 
       - name: "List dependency versions."
+        shell: bash
         run: |
           ./gradlew --version
           google-chrome --version
 
       - name: "Run ${{ inputs.name }} (${{ inputs.test-pattern }}) Tests."
+        shell: bash
+        env:
+          TASK: ${{ inputs.test-task }}
+          TESTS: ${{ inputs.test-pattern }}
         run: >
           ./gradlew
           --no-daemon
           --stacktrace
-          ${{ inputs.test-task }} --tests "${{ inputs.test-pattern }}"
+          "${TASK}" --tests "${TESTS}"
           -Pnet.twisterrob.test.selenium.headless=true
 
       - name: "Upload 'Test ${{ inputs.name }} Results XMLs' artifact."
-        if: success() || failure()
+        if: ${{ success() || failure() }}
         uses: actions/upload-artifact@v4
         with:
           name: 'Test ${{ inputs.name }} Results XMLs'
+          if-no-files-found: error
           path: ${{ github.workspace }}/build/test-results/*/TEST-*.xml
 
       - name: "Upload 'Test ${{ inputs.name }} Results HTML' artifact."
-        if: success() || failure()
+        if: ${{ success() || failure() }}
         uses: actions/upload-artifact@v4
         with:
           name: 'Test ${{ inputs.name }} Results HTML'
+          if-no-files-found: error
           path: ${{ github.workspace }}/build/reports/tests/*/
 
       - name: "Publish 'Results / ${{ inputs.name }}' check suite."
@@ -70,5 +77,6 @@ jobs:
           check_name: 'Results / ${{ inputs.name }}'
           comment_mode: off
           report_individual_runs: true
+          action_fail_on_inconclusive: true
           test_changes_limit: 0
           junit_files: ${{ github.workspace }}/build/test-results/*/TEST-*.xml

@@ -31,7 +31,9 @@ jobs:
           distribution: zulu
 
       - name: "Build without testing"
-        run: ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses build -x test -x smokeTest
+        shell: bash
+        run: >
+          ./gradlew --no-daemon --no-build-cache --stacktrace assemble testClasses build -x test -x smokeTest
 
 
   test-all:
