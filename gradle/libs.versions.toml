@@ -4,7 +4,7 @@ kotlin = "2.0.10"
 
 selenium = "4.23.0"
 
-slf4j = "2.0.13"
+slf4j = "2.0.14"
 log4j = "2.23.1"
 
 junit = "5.10.3"
