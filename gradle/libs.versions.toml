@@ -2,7 +2,7 @@
 java = "17"
 kotlin = "2.0.20"
 
-selenium = "4.23.1"
+selenium = "4.24.0"
 
 slf4j = "2.0.16"
 log4j = "2.23.1"

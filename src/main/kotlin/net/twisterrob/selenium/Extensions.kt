@@ -12,7 +12,7 @@ fun WebDriver.initElements(page: Any) {
 	PageFactory.initElements(this, page)
 }
 
-operator fun WebElement.get(attribute: String): String =
+operator fun WebElement.get(attribute: String): String? =
 	this.getAttribute(attribute)
 
 /**
