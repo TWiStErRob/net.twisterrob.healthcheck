@@ -20,7 +20,7 @@ class WebElementAssert(
 
 	fun isButton(): WebElementAssert = apply {
 		val isButton = actual.tagName.equals("button", ignoreCase = true)
-		val isInputButton = actual.getAttribute("type").equals("button", ignoreCase = true)
+		val isInputButton = actual.getDomProperty("type").equals("button", ignoreCase = true)
 		if (!(isButton || isInputButton)) {
 			failWithMessage("Expected element to be a button. But was not!")
 		}
@@ -33,7 +33,7 @@ class WebElementAssert(
 	}
 
 	fun hasAttributeValue(attr: String, value: String): WebElementAssert = apply {
-		if (actual.getAttribute(attr) != value) {
+		if (actual.getDomProperty(attr) != value) {
 			failWithMessage("Expected element to have attr <%s> value as <%s>. But was not!", attr, value)
 		}
 	}
@@ -41,7 +41,7 @@ class WebElementAssert(
 	@CheckReturnValue
 	fun text(): AbstractStringAssert<*> {
 		val text = when (actual.tagName) {
-			"textarea" -> actual.getAttribute("value")
+			"textarea" -> actual.getDomProperty("value")
 			else -> actual.text
 		}
 		return assertThat(text)

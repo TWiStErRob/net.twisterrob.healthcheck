@@ -32,7 +32,7 @@ class IndexPage(
 	private fun assertTitle() {
 		// TODO dashes?
 		assertThat(driver.title).isEqualTo("TWiStErRob – Professional & Hobby Development site")
-		assertThat(logo.getAttribute("title")).isEqualTo("TWiStErRob — Professional & Hobby Development site")
+		assertThat(logo.getDomProperty("title")).isEqualTo("TWiStErRob — Professional & Hobby Development site")
 	}
 
 	fun gotoAbout(): AboutPage {

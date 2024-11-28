@@ -13,7 +13,7 @@ fun WebDriver.initElements(page: Any) {
 }
 
 operator fun WebElement.get(attribute: String): String? =
-	this.getAttribute(attribute)
+	this.getDomProperty(attribute)
 
 /**
  * Creates and initializes the Page Object. To skip initialization just create the Page Object manually.
