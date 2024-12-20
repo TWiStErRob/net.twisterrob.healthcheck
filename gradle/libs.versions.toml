@@ -8,7 +8,7 @@ slf4j = "2.0.16"
 log4j = "2.24.3"
 
 junit = "5.11.4"
-assertj = "3.26.3"
+assertj = "3.27.0"
 
 [libraries]
 kotlin-pom = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
