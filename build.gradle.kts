@@ -55,11 +55,7 @@ testing.suites {
 			}
 		}
 	}
-	val test by existing(JvmTestSuite::class) {
-		testType.set(TestSuiteType.INTEGRATION_TEST)
-	}
 	register<JvmTestSuite>("smokeTest") {
-		testType.set("smoke-test")
 		targets.configureEach {
 			testTask.configure {
 				options {
@@ -67,6 +63,7 @@ testing.suites {
 					includeTags("smoke")
 				}
 				// Share classpath with test, don't use own.
+				val test = named<JvmTestSuite>("test")
 				testClassesDirs = files(test.map { it.sources.output.classesDirs })
 				classpath = files(test.map { it.sources.runtimeClasspath })
 			}
