@@ -7,7 +7,7 @@ selenium = "4.34.0"
 slf4j = "2.0.17"
 log4j = "2.25.0"
 
-junit = "5.13.2"
+junit = "5.13.3"
 assertj = "3.27.3"
 
 [libraries]
