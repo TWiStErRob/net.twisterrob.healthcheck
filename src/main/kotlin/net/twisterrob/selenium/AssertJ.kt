@@ -1,9 +1,9 @@
 package net.twisterrob.selenium
 
+import org.assertj.core.annotation.CheckReturnValue
 import org.assertj.core.api.AbstractAssert
 import org.assertj.core.api.AbstractStringAssert
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.util.CheckReturnValue
 import org.openqa.selenium.WebElement
 import kotlin.reflect.KFunction1
 
