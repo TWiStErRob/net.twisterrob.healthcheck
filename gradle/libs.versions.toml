@@ -1,6 +1,6 @@
 [versions]
 java = "17"
-kotlin = "2.2.10"
+kotlin = "2.2.20"
 
 selenium = "4.35.0"
 
