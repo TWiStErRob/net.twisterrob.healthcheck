@@ -11,9 +11,7 @@ dependencies {
 	implementation(libs.log4j.iostreams)
 	implementation(libs.assertj)
 
-	testImplementation(libs.junit.api)
-	testImplementation(libs.junit.params)
-	testRuntimeOnly(libs.junit.engine)
+	testImplementation(libs.junit)
 
 	testRuntimeOnly(libs.log4j)
 	testRuntimeOnly(libs.log4j.slf4j)
