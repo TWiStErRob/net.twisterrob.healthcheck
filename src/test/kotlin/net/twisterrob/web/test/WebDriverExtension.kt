@@ -29,7 +29,7 @@ class WebDriverExtension : BeforeEachCallback, AfterEachCallback, ParameterResol
 		private val ExtensionContext.store: ExtensionContext.Store
 			get() = this.getStore(NAMESPACE)
 
-		private val NAMESPACE = ExtensionContext.Namespace.create(WebDriverExtension::class.qualifiedName)
+		private val NAMESPACE = ExtensionContext.Namespace.create(WebDriverExtension::class.qualifiedName!!)
 
 		private val WEB_DRIVER_KEY: Any = WebDriver::class
 		private val WEB_DRIVER_VALUE_TYPE: Class<WebDriver> = WebDriver::class.java
