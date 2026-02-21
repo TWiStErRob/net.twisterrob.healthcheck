@@ -22,7 +22,7 @@ operator fun WebElement.get(attribute: String): String? =
 inline fun <reified T> WebDriver.createPage(): T =
 	PageFactory.initElements(this, T::class.java)
 
-fun <F> Wait<F>.whilst(isTrue: (F) -> Boolean): Boolean =
+fun <F : Any> Wait<F>.whilst(isTrue: (F) -> Boolean): Boolean =
 	until { !isTrue(it) }
 
 /**
