@@ -66,7 +66,7 @@ jobs:
 
       - name: "Upload 'Test ${{ inputs.name }} Results XMLs' artifact."
         if: ${{ success() || failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: 'Test ${{ inputs.name }} Results XMLs'
           if-no-files-found: error
@@ -74,7 +74,7 @@ jobs:
 
       - name: "Upload 'Test ${{ inputs.name }} Results HTML' artifact."
         if: ${{ success() || failure() }}
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: 'Test ${{ inputs.name }} Results HTML'
           if-no-files-found: error
