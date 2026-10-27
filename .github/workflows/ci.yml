@@ -49,7 +49,12 @@ jobs:
       - name: "Build without testing"
         shell: bash
         run: >
-          ./gradlew --no-daemon --stacktrace assemble testClasses build -x test -x smokeTest
+          ./gradlew
+          --no-daemon
+          --stacktrace
+          assemble testClasses build
+          -x test
+          -x smokeTest
 
 
   test-all:
