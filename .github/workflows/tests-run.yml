@@ -48,6 +48,9 @@ jobs:
           java-version: 17
           distribution: zulu
 
+      - name: "Set up Gradle."
+        uses: gradle/actions/setup-gradle@v6
+
       - name: "List dependency versions."
         run: |
           ./gradlew --version
