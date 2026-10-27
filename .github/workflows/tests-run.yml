@@ -61,7 +61,7 @@ jobs:
           ./gradlew
           --no-daemon
           --stacktrace
-          "${TASK}" --tests "${TESTS}"
+          "${TASK}" --rerun --tests "${TESTS}"
           -Pnet.twisterrob.test.selenium.headless=true
 
       - name: "Upload 'Test ${{ inputs.name }} Results XMLs' artifact."
