@@ -52,7 +52,9 @@ jobs:
           ./gradlew
           --no-daemon
           --stacktrace
-          assemble testClasses build
+          assemble
+          testClasses
+          build
           -x test
           -x smokeTest
 
