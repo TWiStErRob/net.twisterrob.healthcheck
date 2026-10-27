@@ -43,6 +43,8 @@ jobs:
 
       - name: "Set up Gradle."
         uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: enhanced
 
       - name: "Build without testing"
         shell: bash
