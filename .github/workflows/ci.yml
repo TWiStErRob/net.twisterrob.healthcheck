@@ -43,8 +43,6 @@ jobs:
 
       - name: "Set up Gradle."
         uses: gradle/actions/setup-gradle@v6
-        with:
-          cache-read-only: false
 
       - name: "Build without testing"
         shell: bash
@@ -60,7 +58,7 @@ jobs:
     with:
       name: 'All'
       test-task: ':test'
-      test-pattern: 'net.twisterrob.web.twisterrob_net.www.IndexPageTest.home page can launch about'
+      test-pattern: '*'
 
     permissions:
       contents: read
@@ -68,7 +66,6 @@ jobs:
 
 
   test-smoke:
-    if: ${{ false }}
     name: "Tests"
     needs:
       - validate

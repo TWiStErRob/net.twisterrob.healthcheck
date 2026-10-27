@@ -2,7 +2,6 @@ name: "Scheduled"
 
 on:
   push:
-    branches: [main]
   workflow_dispatch:
   schedule:
     # https://crontab.guru/#0_6_*_*_*
