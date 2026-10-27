@@ -48,6 +48,11 @@ jobs:
           java-version: 17
           distribution: zulu
 
+      - name: "Set up Gradle."
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: enhanced
+
       - name: "List dependency versions."
         run: |
           ./gradlew --version
@@ -63,6 +68,7 @@ jobs:
           --stacktrace
           "${TASK}" --tests "${TESTS}"
           -Pnet.twisterrob.test.selenium.headless=true
+          --rerun
 
       - name: "Upload 'Test ${{ inputs.name }} Results XMLs' artifact."
         if: ${{ success() || failure() }}
