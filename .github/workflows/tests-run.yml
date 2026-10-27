@@ -67,8 +67,8 @@ jobs:
           --no-daemon
           --stacktrace
           "${TASK}" --tests "${TESTS}"
-          --rerun
           -Pnet.twisterrob.test.selenium.headless=true
+          --rerun
 
       - name: "Upload 'Test ${{ inputs.name }} Results XMLs' artifact."
         if: ${{ success() || failure() }}
